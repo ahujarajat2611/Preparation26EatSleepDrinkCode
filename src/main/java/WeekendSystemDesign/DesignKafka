@@ -1,0 +1,241 @@
+
+
+Design Kafka.
+
+1)
+
+
+Pub-sub platofrm/model
+
+Pull vs Push
+
+1) Pushing to all my clients
+
+---Queue1 --->>>>>> Visualization( Client )
+                  | | | | |
+
+
+
+
+/data
+
+a)push vs pull -> pull model from client persepective
+b) pull api
+c) push api
+d) brokers( set of servers ( cluster
+e) Scalable to hadle spikes
+
+class Message{
+
+
+}
+void push(Message m ,<Set of brokers  );
+
+Message pull ( Set of brokers);
+
+
+Web Server( Http End point ) ->
+
+
+
+Client(Write some data to Kafka) --> ( TCP/writing in disk) --> {
+
+  Connecction c = Custer.getConnecction();
+  if(c.topicExisit){
+    c.push(new Message(), Topic databaseName);
+  }
+
+}
+
+SendMessages.java
+main() {
+
+
+  Config allconfigs = new Config()
+  allConfigs.put("ClusterName", "127.0.0.1:8080;.....");
+  // Serilazation ( Kryo , Thrift)
+  // Compression ( Lzo, gzzip)
+  // Partition partitoner = new Parition( Prtition Logicc, num)
+  // Repilcattion Factor (3)
+  // Acks :- All , -1, 0, 1
+  // Retries backOff
+  // Spooling ( Write to disk )
+  //
+  Producer myProd = new Producer(allConfigs);
+}
+
+//kafka-client-0.0.9.jar --> POM file/Gradle .
+
+class Producer {
+
+    Producer(Config) {
+
+    }
+
+    writeData(Message m , Topic topic){
+
+    }
+    writeData(Key key, Message m , Topic topic){
+
+    }
+
+    CreateTopic(Topic databaseName ){
+
+    }
+
+    exisitTopic(){
+
+
+    }
+
+}
+
+  public static void main(String args[]){
+
+
+  }
+class Consumer {
+
+  Connection connection ;
+  Consumer ( Conig config){
+    //
+    //
+    connection = new coNNECTION(CONFFIG);
+  }
+
+  unsubscribe(Topic topic){
+
+  }
+
+  subscribe(Topic[] topic){
+
+  }
+
+  Message getData(TimeUnit timeUnit){
+      connection.fromthattopicc();
+  }
+}
+           _, _, _ , _
+
+
+
+           While(true) {
+
+
+              myconsumer.getData(100); <- Blocking call for 100 ms
+
+
+              List<Message> list  = new LInkedlist<>
+
+
+              dump(data) --> Other library to use.
+
+           }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    main() {
+
+             Consumer myConsumer = new consumer();
+
+
+
+           }
+
+
+
+
+
+
+
+class Notification{
+
+
+  int callback(){
+
+
+  }
+
+
+}
+
+           Class ABC {}
+
+           Class XYZ {}
+
+           XYZ xyz = new ABC();
+
+
+class NewNotification{
+
+  int callback();
+
+}
+
+class BrandNewNotification implements INotification {
+
+
+  int callback() {
+  }
+
+
+
+}
+class Main{
+  main(){
+    Libraryy lib  = new LIbrary(INotification);
+    Notification obj ==
+    lib.registerCallback(obj);
+    lib.sendMessage(Message, <Callback Mechanism>);
+    lib.sendMessage(Message);
+    lib.sendMessage(Message);
+    lib.sendMessage(Message);
+    lib.sendMessage(Message);
+  }
+
+
+  new Lirbabry(new BrandNewNotification());
+  new Lirbabry(new NewNotification());
+
+}
+
+
+  class Libbrary {
+
+
+        Library(INotificaton notify) {
+
+            this.callback = notify;
+
+        }
+//       void registerCallBack(Notification obj){
+//         this.callBack = obj;
+
+//       }
+      void SendMessage(MEssage m, INotification Obj){
+        send(m);
+        obj.callBack();
+      }
+
+      void SendMessage(MEssage m, INotification Obj){
+        send(m);
+        obj.myCallBack();
+      }
+
+
+  }
+

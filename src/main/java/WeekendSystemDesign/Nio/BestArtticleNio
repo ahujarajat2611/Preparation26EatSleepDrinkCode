@@ -1,0 +1,4 @@
+http://www.onjava.com/pub/a/onjava/2002/09/04/nio.html?page=3
+http://www.baeldung.com/java-nio-selector
+https://books.google.co.in/books?id=mvzgNSmHEUAC&pg=PT299&lpg=PT299&dq=does+single+selector+manages+so+many+connections+NIO&source=bl&ots=3qV1rxdpzV&sig=FPmyS78Lq_tF5FRfxtKdK34rh14&hl=en&sa=X&ved=0ahUKEwiQ4LzMz_jZAhWFpJQKHTizDb0Q6AEIZDAF#v=onepage&q=does%20single%20selector%20manages%20so%20many%20connections%20NIO&f=false
+https://github.com/StevenKin/MineServer/tree/master/src/main/java/me/stevenkin/http/mineserver/core

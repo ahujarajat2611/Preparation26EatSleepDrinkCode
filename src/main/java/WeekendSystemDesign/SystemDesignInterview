@@ -1,0 +1,34 @@
+uloadd
+download
+upload
+
+List<User> getAll
+
+1) UPload
+2) get Downlaod   // Picture get(id);  bytet[] get(id)
+3) Delete
+4) LIST<PICTURE> SORTEDBYTIME(USERID)
+5) lowQuality Mediu high(original)
+6) List<Byte[]> getAActualPic(UserId)
+7) Authetincation
+
+
+network -->webserver Kafka  queue ->
+8) upload(byte [], Socket socket){
+        int unique = byte[];
+        // 3 uniue ids
+        // uuid ( time stamp + userid + serverid+ threadid + randomnumber());
+        //
+        // id, userid, location,(location of picture),  timestamp, parrnt, flag  , location  , size of bytearray,
+        //
+        mysql
+        push(location ofpicture) >- kafka queue -> process thumbnail pushinto
+        return locaiton of picture
+           // transcoding // uplaoding to HDDFFS //
+           //Async call ( byte array to HDfS )     :-
+}
+
+1)->(erasure encoding)
+2)->(checksum to see that upload already exists)
+3)-> ()
+

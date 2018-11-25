@@ -1,0 +1,16 @@
+HTTP server push
+
+HTTP server push (also known as HTTP streaming) is a mechanism for sending unsolicited (asynchronous) data from a
+web server to a web browser.
+HTTP server push can be achieved through any of several mechanisms.
+
+As a part of HTML5 the WebSocket API allows a web server and
+client to communicate over a full-duplex TCP connection. ( IMP )
+
+Generally the web server does not terminate a
+connection after response data has been served to a client.
+The web server leaves the connection open so that if an event occurs
+(for example, a change in internal data which needs to be reported to one or multiple clients),
+it can be sent out immediately; otherwise, the event would have to be queued until the client's next request is received. Most web servers offer this functionality via CGI (e.g., Non-Parsed Headers scripts on Apache HTTP Server).
+The underlying mechanism for this approach is chunked transfer encoding.
+

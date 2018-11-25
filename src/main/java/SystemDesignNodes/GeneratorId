@@ -1,0 +1,25 @@
+
+https://stackoverflow.com/questions/2671858/distributed-sequence-number-generation
+
+OK, this is a very old question, which I'm first seeing now.
+
+You'll need to differentiate between sequence numbers and unique IDs that are (optionally) loosely sortable by a specific criteria (typically generation time). True sequence numbers imply knowledge of what all other workers have done, and as such require shared state. There is no easy way of doing this in a distributed, high-scale manner. You could look into things like network broadcasts, windowed ranges for each worker, and distributed hash tables for unique worker IDs, but it's a lot of work.
+
+Unique IDs are another matter, there are several good ways of generating unique IDs in a decentralized manner:
+
+a) You could use Twitter's Snowflake ID network service. Snowflake is a:
+
+Networked service, i.e. you make a network call to get a unique ID;
+which produces 64 bit unique IDs that are ordered by generation time;
+and the service is highly scalable and (potentially) highly available; each instance can generate many thousand IDs per second, and you can run multiple instances on your LAN/WAN;
+written in Scala, runs on the JVM.
+b) You could generate the unique IDs on the clients themselves, using an approach derived from how UUIDs and Snowflake's IDs are made. There are multiple options, but something along the lines of:
+
+The most significant 40 or so bits: A timestamp; the generation time of the ID. (We're using the most significant bits for the timestamp to make IDs sort-able by generation time.)
+The next 14 or so bits: A per-generator counter, which each generator increments by one for each new ID generated. This ensures that IDs generated at the same moment (same timestamps) do not overlap.
+The last 10 or so bits: A unique value for each generator. Using this, we don't need to do any synchronization between generators (which is extremely hard), as all generators produce non-overlapping IDs because of this value.
+c) You could generate the IDs on the clients, using just a timestamp and random value. This avoids the need to know all generators, and assign each generator a unique value. On the flip side, such IDs are not guaranteed to be globally unique, they're only very highly likely to be unique. (To collide, one or more generators would have to create the same random value at the exact same time.) Something along the lines of:
+
+The most significant 32 bits: Timestamp, the generation time of the ID.
+The least significant 32 bits: 32-bits of randomness, generated anew for each ID.
+d) The easy way out, use UUIDs / GUIDs.

@@ -1,0 +1,36 @@
+Kafka supports basic pub sub with some extra patterns related to that fact it is a log and has partitions. The producers append messages to the end of the log partitions and the consumers could be positioned with their offset anywhere in the partition.
+This style of diagram is not as easy to quickly interpret when there are multiple partitions and consumer groups, so for the remainder of the diagrams for Kafka I will use the following style:
+Consumers in one consumer group will coordinate the consumption of partitions, ensuring that one partition is not consumed by more than one consumer of the same consumer group.
+
+Likewise, if we have more consumers than partitions, the extra consumer will remain idle, in reserve.
+After adding and removing consumers, the consumer group can become unbalanced. A rebalancing redistributes the consumers as evenly as possible across the partitions.
+
+Rebalancing is automatically triggered after:
+
+    a consumer joins a Consumer Group
+    a consumer leaves a Consumer Group (it shutsdown or is considered dead)
+    new partitions are added
+    Rebalancing will cause a short period of extra latency
+    while consumers stop reading batches of messages and
+    get assigned to different partitions.
+     Any in memory state that was maintained by the consumer
+      may now be invalid. One of the patterns of consumption with Kafka is being able to direct
+       all messages of a given entity, like a given booking,
+        to the same partition and hence the same consumer. This is called data locality. Upon rebalancing any in memory data about that data will be useless unless the consumer gets assigned back to the same partition. Therefore consumers that maintain state will need to persist it externally.
+
+
+Log Compaction
+
+The standard data retention policies are time and space based policies. Store up to the last week of messages or up to 50GB for example. But another type of data retention policy exists - Log Compaction. When a log is compacted, the result is that only the most recent message per message key is retained, the rest are removed.
+
+Let's imagine we receive a message containing the current state of a user's booking. Every time a change is made to the booking a new event is generated with the current state of the booking. The topic may have a few messages for that one booking that represent the states of that booking since it was created. After the topic gets compacted only the most recent message related to that booking will be kept.
+
+Depending on the volume of bookings and the size of each booking, you could theoretically store all bookings forever in the topic. By periodically compacting the topic we ensure we only store one message per booking.
+
+Conclusions
+
+RabbitMQ offers a swiss army knife of messaging patterns due to the variety of functionality it offers. With its powerful routing, it can obviate the need for consumers to retrieve, deserialize and inspect every message when it only needs a subset. It is easy to work with, scaling up and down is done by simply adding and removing consumers. It's plug-in architecture allows it to support other protocols and add new features such as Consistent hashing exchange which is an important addition.
+
+Kafka's distributed log with consumer offsets makes time travel possible. It's ability to route messages of the same key to the same consumer, in order, makes highly parallelised, ordered processing possible. Kafka's log compaction and data retention allow new patterns that RabbitMQ simply cannot deliver. Finally yes, Kafka can scale further than RabbitMQ, but most of us deal with a message volume that both can handle comfortably.
+
+In the next part we'll take a closer look at messaging patterns and topologies with RabbitMQ.

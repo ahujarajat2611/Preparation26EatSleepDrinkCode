@@ -1,0 +1,88 @@
+Apache Kafka
+
+Kafka is a distributed, replicated commit log. Kafka does not have the concept of a queue which might seem strange at first given that it is primary used as a messaging system. Queues have been synonymous with messaging systems for a long time. Let's break down "distributed, replicated commit log" a bit:
+
+    Distributed because Kafka is deployed as a cluster of nodes, for both fault tolerance and scale
+    Replicated because messages are usually replicated across multiple nodes (servers).
+    Commit Log because messages are stored in partitioned, append only logs which are called Topics. This concept of a log is the principal killer feature of Kafka.
+
+    Understanding the log (Topic) and its partitions are the key to understanding Kafka. So how is a partitioned log different from a set of queues? Let's visualise it.
+Rather than put messages in a FIFO queue and track the status of that message in the queue like RabbitMQ does
+Kafka just appends it to the log and that is that.
+The message stays put whether it is consumed once or a thousand times.
+ It is removed according to the data retention policy (often a window time period).
+ So how is a topic consumed?
+ Each consumer tracks where it is in the log, it has a pointer
+  to the last message consumed and this pointer is called the offset.
+  Consumers maintain this offset via the client libraries and depending
+  on the version of Kafka the offset is stored either in ZooKeeper or
+  Kafka itself. ZooKeeper is a distributed consensus technology
+  used by many distributed systems for things like leader election.
+   Kafka relies on ZooKeeper for managing the state of the cluster.
+
+   What is amazing about this log model is that it instantly removes a lot of complexity around message delivery status and more importantly for consumers, it allows them to rewind and go back and consume messages from a previous offset. For example imagine you deploy a service that calculates invoices which consumes bookings placed by clients. The service has a bug and calculates all the invoices incorrectly for 24 hours. With RabbitMQ at best you would need to somehow republish those bookings and only to the invoice service. But with Kafka you simply move the offset for that consumer back 24 hours.
+
+   So let's see what it looks like with a topic that has a single partition and two consumers which each need to consume every message.
+
+   As you can see from the diagram, two independent consumers
+   both consume from the same partition, but they are reading from
+   different offsets. Perhaps the invoice service takes longer
+   to process messages than the push notification service,
+    or perhaps the invoice service was down for a while and catching up, or perhaps there was a bug and its offset had to be moved back a few hours.
+
+Now let's say that the invoice service needs to be scaled out
+ to three instances because it cannot keep up with the message velocity.
+  With RabbitMQ we simply deploy two more invoice service apps which
+  consume from the bookings invoice service queue.
+  But Kafka does not support competing consumers on a single partition,
+  Kafka's unit of parallelism is the partition itself.
+   So if we need three invoice consumers we need at least three partitions.
+    So now we have:
+    So the implication is that you need at least as many partitions as the most scaled out consumer. Let's talk about partitions a bit.
+
+
+    PARTITIONS AND CONSUMER GROUPS
+
+    Each partition is a separate data file which guarantees message ordering
+    . That is important to remember: message ordering is only
+    guaranteed within a single partition.
+    That can introduce some tension later on between message ordering
+     needs and performance needs as the unit of paralleism
+     is also the partition. One partition cannot support competing consumers,
+     so our invoice application can only have one instance consuming
+      each partition.
+
+      Messages can be routed to partitions in a round robin manner or via a hashing function: hash(message key) % number of partitions. Using a hashing function has some benefits as we can design the message keys such that messages of the same entity, like a booking for example, always go to the same partition. This enables many patterns and message ordering guarantees.
+
+      There is a subtle yet important advantage that Kafka had from
+      the start that RabbitMQ added later on,
+       regarding message order and parallelism. RabbitMQ maintains
+       global order of the whole queue but offers no way for maintaining
+        that order during the parallel processing of that queue.
+        Kafka cannot offer global ordering of the topic,
+         but it does offer ordering at the partition level.
+          So if you only need ordering of related messages then Kafka
+          offers both ordered message delivery and ordered message processing.
+           Imagine you have messages that show the latest state of a
+            client's booking, so you want to always process
+             the messages of that booking sequentially
+              (in temporal order). If you partition by the booking Id,
+               then all messages of a given booking will all arrive
+                at a single partition, where we have message ordering.
+                So you can create a large number of partitions,
+                making your processing highly parallelised and also get
+                the guarantees you need for message ordering.
+
+
+
+
+
+
+PUSH VS PULL
+
+RabbitMQ uses a push model and prevents overwhelming consumers via the consumer configured prefetch limit. This is great for low latency messaging and works well for RabbitMQ's queue based architecture. Kafka on the other hand uses a pull model where consumers request batches of messages from a given offset. To avoid tight loops when no messages exist beyond the current offset Kafka allows for long-polling.
+
+A pull model makes sense for Kafka due to its partitions. As Kafka guarantees message order in a partition with no competing consumers, we can leverage the batching of messages for a more efficient message delivery that gives us higher throughput. This doesn't make so much sense for RabbitMQ as ideally we want to try to distribute messages one at a time as fast as possible to ensure that work is parallelised evenly and messages are processed close to the order in which they arrived in the queue. But with Kafka the partition is the unit of parallelism and message ordering so neither of those two factors are a concern for us.
+
+
+

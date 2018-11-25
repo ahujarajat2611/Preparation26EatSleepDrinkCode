@@ -1,0 +1,103 @@
+
+https://www.youtube.com/watch?v=wZNdlM2feK4
+
+https://www.citusdata.com/blog/2017/04/04/distributed_count_distinct_with_postgresql/
+
+https://www.youtube.com/watch?v=ZRCLZ3aIaVU&t=198s
+
+hOW HLL WORKS :-
+
+sTEP1 ;-
+
+Hashing function so that data gets uniformed distribution
+
+lets say we have 22 bit then 10^12-1 to 10^12 + 1 .. data gets uniformed
+
+u have hash basedd 32 bit integer -2^31 to + 2^31 00> data uniformly
+distributed in all cases
+
+a) After hashing you can treat all datatypes same
+b) Hll takes binary representation of each element and tries to find
+rate bit patterns (Find rare bit patterns)
+
+if rare bit patterns found, means cardinatly is quite high
+
+then we take lots of lots of estimation ... then take average
+
+
+
+some estimations would be higher than number
+some estimations would be lower than actuals numbers so better to have many iterators
+and then take mean of fthat
+
+Observe rare bit patterns
+:--------
+ALice ---> (Hashed)-> 947299433-> 001....001 ( leading zeros 2)
+It keeps maximum number of leading zeros
+Bob --> hashed --> 12683748r-> 0101010101( leading zeros 1)
+
+HLL use few bits to decide which partitions to go into !!
+
+With some paritioning rule, i put data into some parition
+if numbers are same it will go into same parition
+
+
+HLL use first few bits to decide which parition .. if you have lets 1000 and 4 paritions you can say that
+first 10 significat decides which paritoin and afterward maximum number of leading zeros
+
+
+
+no need to update since max value is 2
+
+After whole ... lets say leading zeros a re 7
+then cardinality estimation is 2power 8
+
+Stochastic averaging ;;---? if we hash data repeately with 1000 of hash functions
+and take the average of it
+Hashing repeatly is expensive
+
+instead ;;;-> HLL divides whole data into paritiions ---> tries to determine
+maximum number of zeros in each partition and then just make estimates for
+each paritiotn then take average of all estimations
+
+
+
+We dont hash data with many hash functions
+// rather we partitions data and then try to detrmine cardintality
+into those small partitions and take average mean of that
+
+
+WHOLE DATA --- > Partition 1 partition 2 partition 3
+
+Parition1 -- > 7 (continouzero) --> 2^8   ----   228.088(cardinality of this set)
+parititon2 -- > 4 (contiinous zero) --> 2^5 ---
+parittion 3--> 11 continous zero --> 2^12 ---
+
+Error rate :- 1.04/sqrt(number of partitions)
+
+Memory --> number of partitions * log log(max value in hash))
+
+if we are working with hashvalue 32 based
+then log 2pow 32 is 32 and further log 32  -> 5 bits required for
+
+for each parition we need to remember max number of zeros
+
+in above case parition1 has 7 max zeros which can be expressed in 5 bits
+to represent value from 1 to 32 you just need 5 bits
+
+
+1 billion cardinaltity 10^9 --with just 1.5 Kb
+
+1000 000 000          === 83333.3333333
+/ 1.5 * 1000 * 8
+
+
+It uses 5 bits only per paritions so better to increase number of partitions
+
+Memory Vs Acuracy Tradeoffs here
+
+Lots of bad estimation + good estimation :-
+1000s of such estimations and take average it turns out good
+Thats why imp to hash
+
+

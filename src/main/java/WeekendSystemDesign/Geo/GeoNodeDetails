@@ -1,0 +1,36 @@
+
+{March 16, 2018 3:31:50 PM UTC} Current Server Time
+
+GeoService up
+Service Start Time : {March 7, 2018 5:16:37 AM UTC}
+Latest IP to Lat/Long Cache Update Time : {March 10, 2018 5:26:10 AM UTC}
+Latest BSSID to Lat/Long Cache Update Time : {March 16, 2018 5:36:16 AM UTC}
+Latest Context Map (from DB) Update Time : {March 16, 2018 5:36:57 AM UTC}
+Latest Context KdTree Update Time : {March 16, 2018 5:37:53 AM UTC}
+Last KDTree Update Time : {March 16, 2018 9:17:45 AM UTC}
+KDTree Update Never Failed.
+
+Timestamp of Site blacklist file loaded : March 1, 2018 1:33:50 PM UTC
+Number of successful updates to KDTree: {23}
+Number of failed updates to KDTree: {0}
+Number of zips uploaded: {59702}
+Number of BSSID Mappings = 550000000
+Number of Context KdTree nodes = 2329413
+Number of IP Mappings = 44414321
+Number of Blacklisted entries = 3197
+RTree last updated at : {March 16, 2018 3:00:37 PM UTC}
+
+Number of nodes in small fence RTree are : {17482}
+Number of nodes in large fence RTree are : {12057}
+Number of entries in S2 cache map are : {0}
+Country IDs supported for polygon modelling : {[51, 52, 164, 53, 101, 214, 11, 44, 220, 46, 94]}
+Timestamp of BSSID file loaded : March 15, 2018 4:28:09 PM UTC
+Timestamp of IP file loaded : March 10, 2018 2:46:29 AM UTC
+Timestamp of Experian file loaded : September 7, 2017 12:52:37 PM UTC
+Timestamp of POI Main file loaded : March 15, 2018 2:00:49 PM UTC
+Timestamp of Polygon Model file loaded : December 26, 2017 3:00:33 PM UTC
+md5SumBSSID:73e6214afb0862db9ac419038fa2b375
+md5SumIP:a5b5ff8e47c816bde66573a03c854ba0
+md5SumExperian:6d2fdfdf5dfd7f64f3c5d2e58f177b7a
+md5SumPolygonModel:25d86a6c3c14908c90e1680109c55ee0
+md5SumPOIMain:db97cc019d4c9e4de919698c54a71fbf

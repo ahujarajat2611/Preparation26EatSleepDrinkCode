@@ -1,0 +1,26 @@
+https://github.com/davidmarquis/redisq/tree/master/src/main/java/com/github/davidmarquis/redisq
+
+High level concepts
+Message queue
+
+The core concept of RedisQ is the queue itself. A queue has a databaseName, and that's pretty much it. Messages can be published and consumed from a MessageQueue. The MessageQueue interface also provides some read only meta information, i.e. getting the list of registered consumers on the queue, the number of messages in the queue for each consumer, etc.
+Message
+
+A Message is the entity that gets published and consumed on the queue. A Message instance provides some meta information about your actual message, along with its payload. The payload is the actual content that your application publishes and consumes. Within Redis, each individual message is stored as a Hash containing all of the message attributes. Each attribute in the hash is stored as strings, including the payload. For this reason, a (configurable) serialization mechanism exists. More on that later.
+Message producer
+
+The MessageProducer is the side of the system that publishes messages on a queue for consumption by consumers. Multiple producers can exist for the same logical queue.
+Message consumer
+
+A message consumer will consume messages from the queue and pass them out to your application using the MessageListener that you define.
+
+You can define an ID for each logical application consuming messages on a queue, and messages submitted to a queue will be distributed independently to each logical consumer. This allows for per-consumer reliable delivery of messages. In practice, a separate Redis List is created and managed for each registered consumer ID as their own queues.
+
+Multiple application instances (processes) can be defined using the same consumer ID for distributed processing of messages - effectively enabling reliable clustering on your application.
+
+Using consumer IDs is optional. If not defined, a default consumer ID is used (default) on both the producer and the consumer side. This is sufficient for simple cases where you're using a single Redis server in a single logical application.
+
+The class that is used for defining a message consumer is conveniently called MessageConsumer.
+Message listener
+
+On the consumer side, the MessageListener interface represents the link between the queue and your application. Your application must implement the MessageListener interface in order to actually consume messages. This interface defines a single onMessage(Message<T> message) method that gets called when there's a message available for consumption. This interface is generically typed and the type you define in your implementation actually gets passed as a hint to your configured PayloadSerializer.

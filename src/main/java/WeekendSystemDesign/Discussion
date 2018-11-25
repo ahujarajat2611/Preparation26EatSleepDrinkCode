@@ -1,0 +1,67 @@
+soil sensor.
+  Water , temperature, moisture,...... -> t -> 1 sec
+
+
+
+IOT device/servers  --> LB --> event Servers(100 messages) ( Spool events at Event Server) ->  Queue > Read data from
+queue
+SPARK sTREAMING -> Aggregation based on 1 second -> Database Layer ->
+  86400 seconds ( Each scond -> Aggregated )
+
+
+
+public static void main(String args[]){
+
+
+
+//   Condition full
+//   Condition empty;
+//   ReentrantLock
+
+
+//}
+-> offer
+-> put
+-> take
+
+
+class CustomBlockingQueue<K> implement BlockingQueue<K>{
+
+  K []items
+  int front = -1;
+  int real = -1;
+  //Object lock = new Objec();
+
+  BlockingQueue(int size){
+    items = new K[size];
+  }
+
+  synchronized void offer(K item){
+
+
+      while(rear-front+1 == size){
+        this.await();
+      }
+      if(front == -1){
+          front = 0;
+          rear =0;
+          items[front] = item;
+          return;
+        }
+        rear = rear +1;
+        items[rear] = item;
+        this.notify();
+      }
+  }
+
+  synchronized k take(){
+
+    while(front == rear && front == -1){
+      this.await();
+    }
+    K tobeReturned = items[front];
+    front = front + 1;
+    this.notify();
+  }
+
+}

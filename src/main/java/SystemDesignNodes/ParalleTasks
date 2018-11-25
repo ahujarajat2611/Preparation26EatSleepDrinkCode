@@ -1,0 +1,18 @@
+https://tsien.gitbooks.io/system-design/content/scalable-architectures.html
+
+Task Parallelization
+
+Parallelization of tasks can be done at several levels:
+Distributing separate
+tasks onto separate computers.
+Distributing separate
+tasks onto separate CPUs on the same computer.
+Distributing separate
+tasks onto separate threads on the same CPU.
+
+Executing multiple different
+applications on the same computer,
+ possible using the same CPU or using different CPUs is referred to as "multitasking".
+Distributing tasks inside the same
+application to different threads is referred to as
+ "multithreading".

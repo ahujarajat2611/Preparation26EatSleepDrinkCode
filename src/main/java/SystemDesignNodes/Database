@@ -1,0 +1,12 @@
+https://tsien.gitbooks.io/system-design/content/part-2.html
+use clones to horizontally scale
+Bottleneck: MySQL database
+Solution 1:
+Keep MySQL
+do master-slave replication (read from slaves, write to master)
+upgrade your master server by adding RAM, RAM and more RAM.(vertically scale)
+Solution 2:
+denormalize
+include no more Joins in any database query.
+Use NoSQL. Joins will now need to be done in your application code.
+introduce a cache.

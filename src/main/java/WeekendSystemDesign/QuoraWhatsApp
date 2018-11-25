@@ -1,0 +1,31 @@
+1) WhatsApp or most of the other messaging apps rarely work on a peer to peer basis
+So it wouldn't open a connection (from your device) to each of your friends' devices. Instead your device connects to their server.
+
+2)It could then use a custom TCP protocol or maybe HTTP to communicate your messages to the server. The server in return would dispatch them to your friends' devices. If your friend had their app open or at least the app process running there might be a live connection to the server. WhatsApp will use that connection to send them your messages. If their app is "offline" then they might choose to send them a push notification instead.
+
+For your own application things to consider:
+
+    You might not have control over clients sending GPS coordinates to the server every 10 minutes. If your client is running on a mobile device, the OS might decide to starve you from resources or just kill your process.
+    You need to maintain state for clients that are connected to your server to make sure you can send messages to active clients when your requirements are met. This is a slight modification of the stock "Comet app" example that almost every framework has.
+    Establishing a TCP connection is not a very big waste of resources either from the client's side or from the server's side. If your server software ecosystem supports non blocking IO, the state required per connection is tiny. You could support upwards of 100k connections on a mediocre box if you tried hard. If you are on the JVM Netty might help you here. Python has Twisted and Tornado. C++/ C can make use of epoll, kqueue or select if you are on a *NIX system. Golang supports a high number of connections through it's standard library. We have addressed vertical scalability here i.e. how many users could you support on a simple box.
+    If you really want to scale out and build a distributed system that maintains state, you might want to consider Erlang (with OTP) or other implementations of the Actor model, like Akka (JVM) which also supports remote messages. A combination of event sourcing and a message passing architecture could get you all horizontal scalability you need.
+
+
+
+    WhatsApp uses XMPP (eXtensible Messaging and Presence Protocol) to handle the message delivery system.
+    XMPP is mostly like HTTP where the client opens the socket with the XMPP server and keeps it open as long as the client is logged in. It's not like the regular REST API where the client opens the socket send/receive the data and close the socket. The socket is opened as long as you are signed in. In case of WhatsApp that's eternity (not really, WhatsApp reconnects automatically if the connection terminates)
+
+    XMPP protocol has been used in various chat applications such as Google Talk, Facebook messenger etc. I have been working on XMPP since last year and that's when I got to know what this protocol could bring. It's not limited to chat apps though. We're developing an application of our own which is not a chat app.
+
+
+
+
+IMP
+
+    WhatsApp uses a customized version of the open standard Extensible Messaging and Presence Protocol (XMPP).
+
+    Upon installation, it creates a user account using one's phone number as the username (Jabber ID: [phone number]@s.whatsapp.net).
+
+    WhatsApp software automatically compares all the phone numbers from the device's address book with its central database of WhatsApp users to automatically add contacts to the user's WhatsApp contact list.
+
+    Multimedia messages are sent by uploading the image, audio or video to be sent to an HTTP server and then sending a link to the content along with its Base64 encodedthumbnail (if applicable).

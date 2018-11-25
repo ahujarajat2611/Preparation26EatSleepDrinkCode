@@ -1,0 +1,35 @@
+https://tsien.gitbooks.io/system-design/content/part-3.html
+
+
+Scalability for Dummies - Part 3: Cache
+
+in-memory caches like Memcached or Redis.
+A cache is a simple key-value store
+it should reside as a buffering layer between your application and your data storage.
+Whenever your application has to read data it should at first try to retrieve the data from your cache.
+Only if it’s not in the cache should it then try to get the data from the main data source.
+There are 2 patterns of caching your data. An old one and a new one:
+Cached Database Queries
+Whenever you do a query to your database, you store the result dataset in cache. A hashed version of your query is the cache key.
+The main issue is the expiration.
+It is hard to delete a cached result when you cache a complex query (who has not?).
+When one piece of data changes (for example a table cell) you need to delete all cached queries who may include that table cell.
+Cached Objects
+Let your class assemble a dataset from your database and then store the complete instance of the class or the assembled dataset in the cache.
+It makes asynchronous processing possible! The application just consumes the latest cached object and nearly never touches the databases anymore!
+Some ideas of objects to cache:
+user sessions (never use the database!)
+fully rendered blog articles
+activity streams
+user-friend relationships
+Memcached
+
+Memcached is an in-memory key-value store for small chunks of arbitrary data (strings, objects) from results of database calls, API calls, or page rendering.
+What is it Made Up Of?
+Client software, which is given a list of available memcached servers.
+A client-based hashing algorithm, which chooses a server based on the "key".
+Server software, which stores values with their keys into an internal hash table.
+LRU, which determine when to throw out old data (if out of memory), or reuse memory.
+Redis
+
+The databaseName Redis means REmote DIctionary Server.

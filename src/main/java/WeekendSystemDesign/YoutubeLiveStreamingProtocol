@@ -1,0 +1,10 @@
+Youtube page uses http. The real thing does not happens
+via http page but the flash object that is embedded in that page.
+The flash object which appear on youtube is video flash player.
+The video flash player acts as iframe(technically incorrect term)
+for contents that would be called for streaming via flash object.
+ For storing media contents a media sever have been installed
+  by youtube whose contents get called when you press play button.
+For streaming media to flash player Real Time Streaming Protocol
+(RTSP) is used. The play button on flash player acts as RTSP invoker for media being called and media is streamed via UDP packets. In fact you don't need to migrate anywhere from page because the embedded object calls for video not the http page but as the object is embedded on http page once you close it, object also get closed.
+the play button on flash object invokes RTSP for media being called and media is delivered via UDP packets. As you close connection flash object closes, and as flash object closes RSTP connection drops and since no media invoking entity is there media server will automatically stop sending as soon as RSTP dies.

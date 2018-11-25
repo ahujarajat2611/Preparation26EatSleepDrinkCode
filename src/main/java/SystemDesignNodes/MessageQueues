@@ -1,0 +1,86 @@
+http://blog.codepath.com/2013/01/06/asynchronous-processing-in-web-applications-part-2-developers-need-to-understand-message-queues/
+
+
+
+
+In the first part of this series, we explained asynchronous processing, when you might need to use it and why leveraging a database for that purpose is not necessarily the best option. In this post, we will explore a smarter approach to asynchronous processing using “message queues”.
+
+Message Queues
+
+Given the reasons that a traditional database is not the right approach for asynchronous processing, let’s take a look at the why a message queue might be a smarter choice. With a message queue, we can efficiently support a significantly higher volume of concurrent messages, messages are pushed in real-time instead of periodically polled, messages are automatically cleaned up after being received and we don’t need to worry about any pesky deadlocks or race conditions. In short, message queues present a fundamentally sound strategy for handling high-volume asynchronous processing.
+
+Before we continue, it is important to mention that I am not claiming that a database can never be used as a queue. In fact, every database can be made to work at a low or medium volume as a queue given enough time and effort of a clever developer. Moreover, there are actually databases such as PostgreSQL that have additional support for queueing and solid libraries that can make this a manageable solution. If you are processing a low to medium volume of messages largely intended to be used as a job queue and you already use postgreSQL to store your data, there are undoubtedly cases where avoiding a separate message queue is the best choice at least until you feel pain. That said a message queue can be quite a bit more versatile, powerful and flexible depending on your needs. With that said, let’s dive into the world of message queues.
+
+What is a message queue?
+
+At the simplest level, a message queue is a way for applications and discrete components to send messages between one another in order to reliably communicate. Message queues are typically (but not always) ‘brokers’ that facilitate message passing by providing a protocol or interface which other services can access. This interface connects producers which create messages and the consumers which then process them. Within the context of a web application, one common case is that the producer is a client application (i.e Rails or Sinatra) that creates messages based on interactions from the user (i.e user signing up). The consumer in that case is typically daemon processes (i.e rake tasks) that can then process the arriving messages. In other cases, various subsystems will need to communicate with each other via these messages.
+
+
+
+Features
+
+On top of the fundamental ability to pass messages quickly and reliably, most message queues offer additional complementary features. For instance, multiple separate queues can allow different messages to be passed to different queues. This allows the messages of different types to be consumed by different services. The consumer processing email sending requests can be on a totally different queue (and/or server) then the one that resizes uploaded images. Message delivery behavior will often vary depending on your need. Certain messages will go from one producer to a single consumer (direct) while other times the message is sent to multiple different listening consumers (fanout).
+
+
+
+Another critical feature of message queues is robustness and reliability through persistence strategies. In order to keep reliability of the messages high, most message queues offer the ability to persist all messages to disk until they have been received and completed by the consumer(s). Even if the applications or the message queue itself happens to crash, the messages are safe and will be accessible to consumers as soon as the system is operational. In contrast, transient tasks performed synchronously in a web app or on a thread in memory will be lost if anything goes awry. This is especially relevant when dealing with deployments and updating code since restarting components no longer put your messages or tasks at risk.
+
+In addition, message queues can give you a greater visibility into the volume of messages. At the minimum, since there’s typically a broker for messages, inspecting the tasks being processed at any given time is much easier then with synchronous processing. Similarly, handling a high volume of tasks to process is simpler since you can just horizontally scale your message consumers to handle higher loads with minimal fuss. As an added bonus, the application itself now doesn’t have to deal with these tasks, so higher volumes of tasks won’t slow down the response times of the front-end web app.
+
+Service Oriented Architecture
+
+Arguably though the most powerful reason to introduce a message queue is the architectural benefits that their use can afford. In particular, when you have message queues that enable lightweight communication between any number of disparate services, the ability to separate your application into many small subsystems is much easier which will often improve your architecture in several ways including making the individual pieces easier to maintain, test, debug and scale. In addition, with a services oriented approach made possible with message queues, you can easily have multiple teams working along well-defined boundary points and even using different tools or stacks when necessary.
+
+Considerations
+
+All that said, message queues are not a panacea and like all tools have their downsides. Setting up and configuring message queues, especially more complicated ones can add a lot of moving parts to your application. Often in small apps, you don’t actually need to introduce that overhead early on and can instead slowly offload tasks to message queues as the volume of traffic increases over time. Also, with a traditional message queue, error handling is sometimes a very manual effort if a message or task fails and communicating with message queues adds certain complexity into your application logic. In addition, for more general queues, you often have to define your own state machine for messages. That is, a message that needs to be passed to three different services for processing requires you to manually architect a queue workflow that supports that. Nonetheless, for asynchronous processing of many types, a message queue is often the best tool for the job depending on your needs.
+
+Still, which message queue should we use then? What options and alternatives exist? Why would we pick one over another? What are the differences?
+
+Comparing Message Queues
+
+Overview
+
+The good news and the bad news is that there are a lot of message queues to choose from. In fact, there are dozens of message queues with all sorts of names, features, and different pros and cons such as sparrow, starling, kestrel, kafka, Amazon SQS, and many more that will not be discussed here at length.
+
+The easiest place to start is to explain the emerging open standard protocols for message queues which are AMQP and STOMP. These are the most popular message queue standards around today and many of the message queues implement one or both of these protocols. In addition, there is also JMS (Java Message Service) which is widely used on-top of the JVM. For completeness, there is also MSMQ which is not covered in this post but is the defacto queue for most .NET applications.
+
+Message Queue Options
+
+There are certain generic message queue implementations that have emerged as well, many of which built on top of the aforementioned protocols. The most popular and well-supported general purpose message queues available today are RabbitMQ, Apache ActiveMQ and ZeroMQ.
+
+How do these options compare? Well, fortunately all three tools are being actively developed and maintained, have a large user base, good documentation and decent client libraries across many languages. So in a way, you can’t really go wrong with any of these options. However, let’s spend a moment understanding how they compare with one another. In the end, the one to use depends on the needs of your application and the required flexibility.
+
+ZeroMQ
+
+The interesting thing to understand is that ZeroMQ is actually not so much a pre-packaged message queue like the others but instead acts as a framework for building message queues. ZeroMQ focuses mostly on just passing the messages very efficiently over the wire while RabbitMQ acts as a full-fledged ‘broker’ which handles persisting, filtering and monitoring messages. ZeroMQ has no broker built in which means that it does not have a central dispatcher to manage your messages and is really not a “full service” message queue.
+
+
+
+Think of ZeroMQ as it’s own toolbox or framework for creating message queues tailored to your own needs. An example is given above for using ZeroMQ to create a basic instant messaging service. RabbitMQ on the other hand tries to be a more complete queue implementation. RabbitMQ is much more packaged and as such requires less configuration and setup overhead for typical use cases.
+
+Of course, with RabbitMQ or ActiveMQ, the broker and persistence built in adds quite a bit of overhead but those libraries choose to sacrifice raw speed to provide a much richer feature set with less manual tinkering. ZeroMQ is an excellent solution when you want more control or just want to do it yourself. In other cases where you just want to use a queue for typical use cases and you are willing to accept the higher overhead, you should consider RabbitMQ or ActiveMQ.
+
+RabbitMQ and ActiveMQ
+
+Comparing RabbitMQ with ActiveMQ is closer to a head-on comparison because they are solving similar problems. However, the differences here are mostly in the details. ActiveMQ is built in Java on the JMS (Java Message Service) and is very frequently used within applications on the JVM (Java, Scala, Clojure, et al). ActiveMQ also supports STOMP which provides support for Ruby, PHP and Python. RabbitMQ is built on Erlang, powered by AMQP and is used frequently with applications within Erlang, Python, PHP, Ruby, et al.
+
+As you might expect, the developers preferences influenced the choices they make throughout the queues. For example, the configuration for ActiveMQ is in XML and the routing of messages is handled with custom rules defined by ActiveMQ. In contrast, the configuration of RabbitMQ is through an Erlang syntax and the advanced routing and configuration follows standard AMQP specifications. The protocols (AMQP vs JMS) used by each queue have certain underlying differences as well. One key difference is that in AMQP a producer sends a message to the broker without knowing the intended distribution strategy while in JMS the producer is aware of the strategy to be used explicitly.
+
+The key takeaway here is that for a general purpose messaging queue to handle all your messaging needs and supporting most advanced requirements, you could use any of the three options listed above. However, my preference and recommendation in most cases for a Ruby or Python web application is to select RabbitMQ on AMQP. Conversely, if you are building on the JVM stack with Scala or Java, then my recommendation would be to use ActiveMQ. In either case, if you are looking for a customizable general message queue, then you won’t be disappointed. Of course, don’t be too quick to dismiss ZeroMQ if you are looking for raw speed and are interested in a light-weight, do-it-yourself protocol for delivering messages.
+
+Specialized Queues
+
+Incidentally, this is not the end of the story though. While message queues are incredibly helpful here, the major ones listed were built to be generic and general purpose. That is, they don’t solve one particular use case but instead support a wide plethora of use cases requiring varying levels of configuration. These ‘industrial strength’ message queues can power chat rooms, instant messaging services, inter-service communication, or even multiplayer online games.
+
+For the average web application though, the requirements are very different. To understand your requirements, ask yourself if you are sending messages to communicate between different services in your application or if you just want to process simple background jobs. In the latter case, we certainly don’t need the most powerful or flexible message queue nor the expensive associated setup costs.
+
+Intra-service vs Job Processing
+
+Most popular web applications really only need a way to do background job processing and offload tasks to an asynchronous queue. These more specific and constrained requirements open up the possibility for a lighter-weight message queue that is easier to use and focused on doing one thing well.
+
+Takeaways
+
+In this article we have covered the features of a message queue, how they work, popular message queue libraries and how to understand if you need a general message queue or a more specialized one. Hopefully you now understand the potential benefits introducing a message queue into your system architecture but also the tradeoffs and overhead of adding it prematurely. In addition, you should be able to see how a message queue works complementary to a traditional database and how queues used appropriately can help improve the modularity, maintainability and scalability of your applications.
+
+In the next part of this series, we will explore a specialized message queue specifically built to process background jobs called a work queue. We will explore how a work queue operates, what features they typically have, how to scale them and which are most popular today. Hope that this introduction was helpful and please let me know what topics or issues you’d like to have covered in future parts of this series.

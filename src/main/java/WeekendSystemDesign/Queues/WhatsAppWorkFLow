@@ -1,0 +1,20 @@
+At first, I thought this was most likely an instance of Android cloud to device messaging, but it can't be: WhatsApp doesn't declare the necessary permissions, and it works in Eclair (Android 2.1), while cloud to device messaging (and its replacement, Google Cloud Messaging) require at least Froyo (Android 2.2).
+
+However, it is most likely some sort of push notification service. It's impossible to say exactly how it's implemented without access to WhatsApp's source code.
+
+The part about it being able to receive messages when not in use is relatively easy to explain, though. The app almost certainly has a service which runs in the background to check in with the server periodically (or receive the server push, or whatever it does). When you receive a message, the service pops up a notification.
+
+As for the question as to how the server could do a push, here's a possibility (again, I can't verify without source code):
+
+    WhatsApp starts and opens two sockets: One to listen on and one to send a message to the server.
+    WhatsApps starts listening on the first socket.
+    WhatsApp sends a message containing your phone number and the port of the listening socket to the server and waits for an acknowledgement.
+    The server records the phone and port numbers in the message and the IP address that the message came from.
+    The server sends an acknowledgement to the app.
+    The app receives the acknowledgement and closes the message socket.
+    A message with your phone number as the destination comes into the server.
+    The server uses the IP address and port number it has associated with your phone number and uses that information to push the message to your phone.
+
+For this to work, the app would need to monitor the state of the network connection and reset the listening socket / resend the registration message when necessary (if the IP address changes, for example).
+
+If you are interested in using web push notifications for a website you can simply sign up and register at Push Notifications

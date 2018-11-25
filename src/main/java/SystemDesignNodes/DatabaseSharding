@@ -1,0 +1,24 @@
+An Unorthodox Approach To Database Design : The Coming Of The Shard
+
+What Is Sharding?
+
+Sharding is a type of database partitioning that separates very large databases the into smaller, faster, more easily managed parts called data shards. The word shard means a small part of a whole.
+In practice, the term is often used to refer to any database partitioning that is meant to make a very large database more manageable.
+The governing concept behind sharding is based on the idea that as the size of a database and the number of transactions per unit of time made on the database increase linearly, the response time for querying the database increases exponentially.
+The advantages are:
+High availability. If one box goes down the others still operate.
+Faster queries. Smaller amounts of data in each user group mean faster querying.
+More write bandwidth. With no master database serializing writes you can write in parallel which increases your write throughput.
+You can do more work. A parallel backend means you can do more work simultaneously. You can handle higher user loads, especially when writing data, because there are parallel paths through your system. You can load balance web servers, which access shards over different network paths, which are processed by separate CPUs, which use separate caches of RAM and separate disk IO paths to process work.
+How Is Sharding Different Than Traditional Architectures?
+
+Data are denormalized. This doesn't mean you don't also segregate data by type. You can keep a user's profile data separate from their comments, blogs, email, media, etc, but the user profile data would be stored and retrieved as a whole. This is a very fast approach. You just get a blob and store a blob. No joins are needed and it can be written with one disk write.
+Data are parallelized across many physical instances. Historically database servers are scaled up(Vertical scalability). You buy bigger machines to get more power. With sharding the data are parallelized and you scale by scaling out(horizontal scalability).
+Data are kept small. By isolating data into smaller shards the data you are accessing is more likely to stay in cache. Smaller sets of data are also easier to backup, restore, and manage.
+Data are more highly available. Since the shards are independent a failure in one doesn't cause a failure in another.
+It doesn't use replication. Replicating data from a master server to slave servers is a traditional approach to scaling. Data is written to a master server and then replicated to one or more slave servers. At that point read operations can be handled by the slaves, but all writes happen on the master. Obviously the master becomes the write bottleneck and a single point of failure. And as load increases the cost of replication increases. Replication costs in CPU, network bandwidth, and disk IO. The slaves fall behind and have stale data.
+Some Problems With Sharding
+
+Rebalancing data. What happens when a shard outgrows your storage and needs to be split? Moving data from shard to shard required a lot of downtime. Rebalancing has to be built in from the start.
+Joining data from multiple shards.
+How do you partition your data in shards? What data do you put in which shard?

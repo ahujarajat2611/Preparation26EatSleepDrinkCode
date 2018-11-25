@@ -1,0 +1,143 @@
+
+
+a) Web architecture
+https://engineering.videoblocks.com/web-architecture-101-a3224e126947
+
+b) Distributed Systems
+http://book.mixu.net/distsys/single-page.html
+
+c) Consistent hasing
+https://gist.github.com/VarunVats9
+
+d) Multi threading post interviews
+https://www.teamblind.com/article/Multi-threading-in-interviews-Nmj4nQkG
+
+e) Designging Distributed Systems
+https://www.safaribooksonline.com/library/view/designing-distributed-systems/9781491983638/ch10.html#work_queues_id
+
+f) Design news feed systems
+https://medium.com/@bansal_ankur/design-a-news-feed-system-6bf42e9f03fb
+
+g)Pinterest design
+https://medium.com/@Pinterest_Engineering/building-a-dynamic-and-responsive-pinterest-7d410e99f0a9
+https://medium.com/@Pinterest_Engineering/building-a-real-time-user-action-counting-system-for-ads-88a60d9c9a
+
+
+QPS and Web Server/Database Relationship reference (System Design Interview)
+https://medium.com/@lingyong/qps-and-web-server-database-relationship-reference-system-design-interview-f9f27879c961
+
+sharding
+https://medium.com/system-designing-interviews/system-design-chapter-2-sharding-484960c18f6
+
+caching
+https://medium.com/system-designing-interviews/system-design-chapter-4-caching-b59a4cf83f10
+
+kafka
+https://notamonadtutorial.com/interview-with-jay-kreps-about-apache-kafka-46fbfdb870ca
+
+Kafka and system design to use kafka
+https://medium.com/startlovingyourself/design-lessons-learned-from-apache-kafka-af26d8d73332
+
+
+sharding
+https://medium.com/paypal-engineering/application-design-considerations-for-sharding-high-volume-databases-429b9455a6c3
+
+
+Caching system
+https://medium.com/@narengowda/designing-the-caching-system-e42c6938df6a
+
+Crick buzz design
+https://medium.com/@narengowda/cricinfo-cricbuzz-system-design-c596e8506669
+
+Bloom fliter
+https://medium.com/@narengowda/bloom-filter-99b2e59bdd42
+
+All system design
+https://medium.com/@narengowda
+
+websockets
+https://hackernoon.com/scaling-websockets-9a31497af051
+https://medium.com/@Philmod/load-balancing-websockets-on-ec2-1da94584a5e9
+
+Instagram shard
+https://instagram-engineering.com/sharding-ids-at-instagram-1cf5a71e5a5c
+
+All companies big data arch
+https://blog.keen.io/architecture-of-giants-data-stacks-at-facebook-netflix-airbnb-and-pinterest/
+
+Event -driven architecture
+https://www.confluent.io/blog/apache-kafka-for-service-architectures/
+
+microservices
+https://www.confluent.io/landing-page/microservices-online-talk-series/
+
+Designing data intensive application
+https://github.com/ResidentMario/designing-data-intensive-applications-notes
+
+Design event based schedular
+https://medium.com/walmartlabs/an-approach-to-designing-distributed-fault-tolerant-horizontally-scalable-event-scheduler-278c9c380637
+
+Druid
+https://medium.com/airbnb-engineering/druid-airbnb-data-platform-601c312f2a4c
+
+Deploy chat system
+https://medium.com/containers-on-aws/scaling-a-realtime-chat-app-on-aws-using-socket-io-redis-and-aws-fargate-4ed63fb1b681
+
+Streaming search platform
+https://blog.insightdatascience.com/building-a-streaming-search-platform-61a0d5a323a8
+
+System design links nine chapter
+http://ninefu.github.io/blog/System_Design_Reading_List/
+https://hexo2hexo.github.io/System%20Design%20Preparation/
+https://github.com/FreemanZhang/system-design/blob/master/databaseDesign.md
+https://github.com/FreemanZhang/system-design
+http://ninefu.github.io/blog/System_Design_Reading_List/
+
+All tech blogs are here
+https://github.com/binhnguyennus/awesome-scalability.  ( if you can study this, Facebook/google system design interviews are nothing )
+
+https://github.com/FreemanZhang/system-design
+
+https://github.com/FreemanZhang/leetcode#best-practices
+
+Best Coding practices
+https://github.com/FreemanZhang/leetcode
+
+Design cache
+http://massivetechinterview.blogspot.com/2017/04/system-design-cache.html
+
+Design netflix
+https://www.jiuzhang.com/qa/50/
+
+Design uber
+https://www.jiuzhang.com/qa/410/
+
+Design ticket master
+https://mp.weixin.qq.com/s?__biz=MzU2OTUyNzk1NQ==&mid=2247491120&idx=1&sn=40ef45e108992d16942864998e2ff5e8&source=41#wechat_redirect
+
+Mini twitter
+https://www.jiuzhang.com/solution/mini-twitter/
+
+System design
+https://github.com/FreemanZhang/system-design
+
+Qps and webserver
+https://medium.com/@lingyong/qps-and-web-server-database-relationship-reference-system-design-interview-f9f27879c961
+https://medium.com/@azifali/how-we-scaled-300k-qps-3-5b-requests-a-day-f69a641f1ae2
+
+
+Database design
+https://www.safaribooksonline.com/library/view/hbase-high-performance/9781783983063/
+
+Architecture issues
+http://highscalability.com/blog/2014/5/12/4-architecture-issues-when-scaling-web-applications-bottlene.html
+
+Scalablity principles
+https://massivetechinterview.blogspot.com/search?q=capacity+planning&updated-max=2015-07-17T14:53:00-07:00&max-results=20&start=1&by-date=false
+
+DB SERVER SCALDING PATTERNS
+https://medium.com/@rrfd/db-server-scaling-patterns-get-your-data-efficiently-rdms-mongodb-or-casandra-fd1dae4311fb
+https://medium.com/search?q=design%20cassandra%20database
+
+Kafka
+https://medium.com/dive-in-scala/communicating-with-kafka-using-akka-actors-ce4af02482c6

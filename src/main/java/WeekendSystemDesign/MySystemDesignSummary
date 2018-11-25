@@ -1,0 +1,92 @@
+My interview was also over because I knew that companies like FLAG would ask about System Design so this time
+Try to prepare a bit to share it with everyone here. If there is something wrong or need to be added, we can leave a message
+
+System Design and OO Design are different here. System Design is mainly used in FLAG and many large companies.
+It is design scalable distributed systems that only discuss how to prepare this topic
+
+== Getting Started ==
+For the 0-based students, the following materials can be started in order
+1. http://www.hiredintech.com/app#system-design
+This is a website that is specially prepared for interviews. You only care about the system design. There are a lot of links.
+Recall that it is recommended to read at least once
+
+2. https://www.youtube.com/watch?v=-W9F__D3oY4
+Very very good introduction material recommended to watch over 3 times!
+This is the information mentioned in 1 is the final section of the Harvard web app class. Scalability
+Multi-basic concepts such as Vertical scaling, Horizontal scaling, Caching, Load balancing,
+Database replication, Database partitioning will also mention many basic ideas such as avoid
+single point of failure
+Again emphasizes very good data!
+
+3. http://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones
+The Scalability for Dummies mentioned in 1 is pretty good to be able to read the basic idea
+
+Conclusion: When you ended this part of the study you already knew more than 50% of the candidate (because it was
+Many people are not prepared or do not know how to prepare system design.) Congratulations:)
+
+== Advanced ==
+This piece of information is more fragmented. Each one may look different but you see more of an article or a video
+You are stronger than others
+In this part, you will encounter a lot of new terms. My suggestion is that whenever you come across a concept you don’t understand, you have to google it.
+Look at what this concept or technology means. What are the advantages and disadvantages? When are you using these?
+After that, you can apply him to the interview and let the interviewer look
+
+4. http://highscalability.com/blog/2009/8/6/an-unorthodox-approach-to-database-design-the-coming-of-the.html
+Database Sharding is a very important concept suggestion Take a look
+
+5. http://highscalability.com/all-time-favorites/
+This one will talk about how many very popular website architectures are implemented such as Twitter, Youtube,
+Pinterest, Google, etc. My advice is to look at 5-6 then you should have established some basic awareness
+There is also knowledge of the role and mapping of certain technologies and products. For example, you will think of memcached and
+Redis said
+Load balancer you will think of Amazon ELB, F5
+
+6. http://www.infoq.com/
+5 There are links to many of the articles, many of which point to this site. There are many tech talks inside.
+Very good to see
+
+7. https://www.facebook.com/Engineering/notes
+Facebook's very good technical journal will tell how many Facebook features are implemented such as facebook
+message:https://www.facebook.com/notes/facebook-engineering/the-underlying-
+Technology-of-messages/454991608919 It is advisable to take a look at the classmates who are preparing Facebook.
+Here's a Facebook talk about storage https://www.youtube.com/watch?v=5RfFhMwRAic
+
+8. Information on some domestic websites
+http://blog.csdn.net/sigh1988/article/details/9790337
+http://blog.csdn.net/v_july_v/article/details/6279498
+
+9. The last concepts are useful when I look at these data again if you have not encountered or checked
+Suggest to check
+Distributed Hash Table
+Eventual Consistency vs Strong Consistency
+Read Heavy vs Write Heavy
+Consistent Hashing
+Sticky Sessions
+Structured Data(uses DynamoDB) vs Unstructured Data(uses S3)http://smartdatacollective.com/michelenemschoff/206391/quick-guide-structured-and-unstructured-data http://stackoverflow.com/questions/18678315/amazon-s3-or-dynamodb
+
+10 For those who are interested in in-depth research
+Mining Massive Datasets -- Talk about a lot of big data and data mining
+Big Data: Principles and best practices of scalable realtime data systems --
+Twitter's former staff tells how to deal with real-time data
+
+10 messy information just take a look
+http://highscalability.com/blog/2013/10/28/design-decisions-for
+== Summary ==
+After seeing more, your ultimate goal should be to have a big framework and a basic distributed system.
+How do I take it up and have a lot of if conditions? If I want to satisfy this condition, what should I use?
+Techniques such as reading heavy if you use cache will improve performance and know that you should avoid
+Something like avoiding single point of failure and then tradeoff in time and space in read
+When heavy should be inclined to time when the Write heavy is preferred to space, etc.
+
+The framework and if conditions you summed up with me are certainly not exactly the same but because of system
+Design has always been an open ended question so there is no need to be afraid to be able to justify it.
+
+In the end, this article is purely a guide. If there are any errors or supplements, please contact us.
+
+== FAQ ==
+1. Does New Grad need to see System Design?
+
+The answer is it depends. Some companies check system design. Some companies only go to OO design.
+Obviously, companies that are not testing their own will have a slightly lower expectation of new grad, but you have such an opportunity
+Can you be gaining leverage over other candidates why?
+What is the interviewer's question about system design?

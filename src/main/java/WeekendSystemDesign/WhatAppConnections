@@ -1,0 +1,55 @@
+
+IMP LINES ABT WHATSAPP
+WhatsApp as most of modern apps uses Push Technology.
+
+It means that, instead of making the device pulling data from the server every x seconds or minutes, the server pushes data when it's neccesary to send data to the device.
+
+It requires that the device previously identifies itself with the server. The server recognizes it and from then, the server will be able to send a notification to the device when it is needed.
+
+If the device needs a little amount of data, then it can come in the notification, or, the notification can act as wake up call that forces the app/device to connect to the server and pull the data.
+
+Google provides a free service to make this technology work in Android / iOS devices called Firebase
+
+In case of multimedia messages, contents (audio, video, or image) are uploaded into a HTTP server and are linked with the content and then sent to the receiving node (receiver) in the form of a thumbnail. Based on the user’s preference the content can either be viewed or discarded.
+
+The primary protocol in use is XMPP (Extensible Messaging and Presence Protocol).DSL ensures network security and also helps in preventing private data transfer.
+
+As and when message is sent, it is queued on the server. The message waits in the queue until the recipient reconnects to receive the message. As and when a message is delivered the sender gets notified by a double check mark near the message. After the delivery the messages are instantly deleted from the server memory.
+
+This instant deletion from server memory helps WhatsApp keep its resources to a bare minimum.
+
+Additionally, Whatsapp uses HTML5 WebSockets which communication technology which facilitates two-way communication.
+
+
+
+
+
+
+    WhatsApp server is almost completely implemented in Erlang.
+
+    Server systems that do the backend message routing are done in Erlang.
+
+    Great achievement is that the number of active users is managed with a really small server footprint. Team consensus is that it is largely because of Erlang.
+
+    Interesting to note Facebook Chat was written in Erlang in 2009, but they went away from it because it was hard to find qualified programmers.
+
+    WhatsApp server has started from ejabberd
+
+    Ejabberd is a famous open source Jabber server written in Erlang.
+
+    Originally chosen because its open, had great reviews by developers, ease of start and the promise of Erlang’s long term suitability for large communication system.
+
+    The next few years were spent re-writing and modifying quite a few parts of ejabberd, including switching from XMPP to internally developed protocol, restructuring the code base and redesigning some core components, and making lots of important modifications to Erlang VM to optimize server performance.
+
+    To handle 50 billion messages a day the focus is on making a reliable system that works. Monetization is something to look at later, it’s far far down the road.
+
+    A primary gauge of system health is message queue length. The message queue length of all the processes on a node is constantly monitored and an alert is sent out if they accumulate backlog beyond a preset threshold. If one or more processes falls behind that is alerted on, which gives a pointer to the next bottleneck to attack.
+
+    Multimedia messages are sent by uploading the image, audio or video to be sent to an HTTP server and then sending a link to the content along with its Base64 encoded thumbnail (if applicable).
+
+    Some code is usually pushed every day. Often, it’s multiple times a day, though in general peak traffic times are avoided. Erlang helps being aggressive in getting fixes and features into production. Hot-loading means updates can be pushed without restarts or traffic shifting. Mistakes can usually be undone very quickly, again by hot-loading. Systems tend to be much more loosely-coupled which makes it very easy to roll changes out incrementally.
+
+    What protocol is used in Whatsapp app? SSL socket to the WhatsApp server pools. All messages are queued on the server until the client reconnects to retrieve the messages. The successful retrieval of a message is sent back to the whatsapp server which forwards this status back to the original sender (which will see that as a "checkmark" icon next to the message). Messages are wiped from the server memory as soon as the client has accepted the message
+
+    How does the registration process work internally in Whatsapp? WhatsApp used to create a username/password based on the phone IMEI number. This was changed recently. WhatsApp now uses a general request from the app to send a unique 5 digit PIN. WhatsApp will then send a SMS to the indicated phone number (this means the WhatsApp client no longer needs to run on the same phone). Based on the pin number the app then request a unique key from WhatsApp. This key is used as "password" for all future calls. (this "permanent" key is stored on the device). This also means that registering a new device will invalidate the key on the old device.
+

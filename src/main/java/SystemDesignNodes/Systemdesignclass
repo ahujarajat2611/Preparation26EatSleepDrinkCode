@@ -1,0 +1,215 @@
+// // package whatever; // don't place package databaseName!
+
+// import java.io.*;
+
+// class MyCode {
+//   public static void main (String[] args) {
+//     System.out.println("Hello Java");
+
+//     HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+//     map.put1,1);
+//     System.out.println(map);
+
+//     HashMap<UniqueId, List<FileId>>  concurrentHashMap ;
+
+//   }
+// }
+
+// //Pick the call..
+// //t1:v1, T2:V2, T3:V3, D
+// //HH
+// //MM
+// //SEC
+
+// Functionality - module. Filter, Parse, Store
+// Technology - Push & pull, client-server
+// Classes - Class design. Agg vs comp, ingeritance
+// load - QPS.microservices. SOA
+
+
+// HashMap<Pair<Trasasctions,Key>,Value> tempSpace (<1,A>,20>)
+
+
+// HashMap<Key,Value> memTable; (A,10)
+
+// if(memtable>100mb){
+// push to disk();
+// }
+// //CAP- Distrbuted system vs ACID - Transactions
+// //Serializibility
+// //Log SQL - Write back.. Write ahead
+// /*
+
+
+
+// PUT A 10 ( keep copy on 3 nodes )
+// GET A     #10
+// BEGIN TRANSACTION
+// PUT A 20
+// GET A      #20
+// BEGIN TRANSACTION
+// PUT A 40
+// GET A #40
+// ABORT
+// GET A #10
+// COMMIT
+// PUT A 30
+// GET A #20/10
+// PUT B 20
+// PUT C 30
+// UNSET A
+// */
+
+// // 1 2 3
+// //MainhashMap: A -> 10
+
+// //1 - 2 - 3
+// //      |
+// //      4
+
+// //1 - 2 - 3
+
+// //Routing table - D
+// Deserialization/unmarshalling
+// Decoding
+
+// computer(7) - Router - router - Computer(7)
+
+// (Physical , Data link(Data frames) , Netowrk(IP)),
+// (Transprt (Tcp/udp), Session, Presentation, Application(HTTP, FTP))
+// physical
+// data link (dataframes
+// network(ip)
+// transport layer
+// session + presentation + application ( http)
+
+// PUT | IP
+//    (UDP, raw bytes (appication protocol))
+// 1) Dns server :-(cahce in browser, cahce in os, cahce in airtel server) tries to fetch IP server
+
+// 2) ip:80 ( most common applications)
+
+// 3) source ip :- destinaton 80
+
+// 4) transport layer package 3 way handshake (3 acks are raw bytes )
+
+// 5) ( https reuiqrees for tcp - transport layer protocol)
+
+// 6) 4 layer model gets used
+
+// 7) OSI -> My application
+
+// 1) Get request ->
+// Tranport:- Segments + headers
+
+// OSI-> logical sepration i can have my own implementation of OSI layer
+
+// these days presensatin + session + application layer gets clubed to one layer and thats how things go on
+
+// 1) Acks on transport 3way hanndwayshake
+
+// //URL
+// a)push(String fileString,Type type);
+// push(){
+
+
+// ()
+//   Rest :- Rest an architecral styple
+//   everything is uniqually identifed by resource id
+
+//   1)getALlBookings(hotel);
+// //...:80/userid  --> DELETE : HTTP VERB
+// //....:80/userid --> GET
+// //  ...:80/users/userid -> GET
+  We can use any protocol(http,ftp) to have Rest API in place !!!
+
+//     @PAth(/{userId}) --> HTTP Body
+//     -> Google protocol buffer
+//     -> XML - POJO
+//void operate_on_user(UserRequest) {
+//     Reuqets.header.verb == 'Delete':
+//     return UserResponse
+//       Accept-header
+//   }
+//   // two computers wanat to interact in decoupled manner!!
+//   // then we design rest service
+//   // style that has standard
+//   // how do we define resources
+//   //
+
+//   reauest thrfit{
+
+//       adfadf
+//       adfadf
+//       adfad
+//   }
+//   response thrisft{
+
+//       saddfadf
+//       adfad
+//   }
+//   //"application/x-thrift"
+//   request :-
+//   server :- Http server 80 ->tomcat
+//   content -thrift
+//   abstract
+// //Upload to file cloud
+// //getData(Filepath,type);
+// //}
+
+
+// //   Upload to file cloud
+//   // getData(FilePath ,TYpe type);
+//   //
+
+// /*
+// Your last C# code is saved below:
+// using System;
+
+// public class Test
+// {
+//   public static void Main()
+//   {
+//     Console.WriteLine("Hello");
+//   }
+// }
+
+//  */
+//     class task implements Runnable{
+
+//       public void run (){
+
+//         sout( Some task i am doing );
+//       }
+
+//     }
+
+//     new Thread( new task()).start();
+// Dispatch {
+main() { --> main
+
+  Runnable task = new Runnable () { --> Parent --> Pool
+    void run() {
+      workingTask = new Runnable() { --> child
+        excute(); -> Never returns
+        process();
+      }
+    }
+    thread innerthread = new thread(workingTask)
+    innertThread.start();
+    try {
+      Thread.sleep(TIMEOUT)
+      innerThread.interrupt();
+    }
+  }
+  new Thread(task).start()
+}
+}
+
+//Async
+-> client fires and forget --Futures --> Pool of thread
+await()
+  future.get(DELAY)
+
+
+//put(K: V) java.nio.*

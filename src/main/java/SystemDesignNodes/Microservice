@@ -1,0 +1,22 @@
+Microservices
+
+The time when things are most
+likely to break is when you change them.
+ Uber is most reliable on the weekends
+ when engineers aren’t making changes
+ even though that’s when Uber is the busiest.
+Everytime you go to change something you
+risk breaking it.
+Does it make sense
+at some point to never touch a microservice? Maybe.
+The Good:
+Microservices
+allow teams to be formed quickly and
+run independently.
+ People are being added all the time.
+Own your own uptime. You run the code that you write. All the service teams are on call for the services they run in production.
+Use the best tool for the job. But best in what way? Best to write? Best to run? Best because I know it? Best because there are libraries? When you dig into it, best doesn’t mean a lot.
+The Obvious Costs:
+Everything is an RPC.
+Microservices deployment.
+What if breaks?

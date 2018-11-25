@@ -1,0 +1,49 @@
+http://kasunpanorama.blogspot.in/2015/04/understanding-reactor-pattern-with-java.html
+https://github.com/kasun04/rnd/blob/master/nio-reactor/src/main/java/org/panorama/kasun/ReadEventHandler.java
+http://gee.cs.oswego.edu/dl/cpjslides/nio.pdf
+http://www.onjava.com/pub/a/onjava/2004/09/01/nio.html?page=3
+http://www.baeldung.com/java-nio-selector
+
+
+Selector (demultiplexer)
+
+Selector is the Java building block, which is analogous to the demultiplexer in the Reactor pattern. Selector is where you register your interest in various I/O events and the objects tell you when those events occur.
+
+Reactor/initiation dispatcher
+
+We should use the Java NIO Selector in the Dispatcher/Reactor. For this, we can introduce our own Dispatcher/Reactor implementation called ‘Reactor’. The reactor comprises java.nio.channels.Selector and a map of registered handlers. As per the definition of the Dispatcher/Reactor, ‘Reactor’ will call the Selector.select() while waiting for the IO event to occur.
+
+
+Handle
+
+In the Java NIO scope, the Handle in the Reactor pattern is realized in the form of a SelectionKey.
+
+Event
+
+The events that trigger from various IO events are classified as - SlectionKey.OP_READ etc.
+Handler
+
+A handler is often implemented as runnable or callable in Java.
+
+
+
+The biggest advantage of nonblocking or asynchronous I/O is that your thread can continue it's work in parallel. Of course you can achieve this also using an additional thread. As you stated for best overall (system) performance I guess it would be better to use asynchronous I/O and not multiple threads (so reducing thread switching).
+
+Let's look at possible implementations of a network server program that shall handle 1000 clients connected in parallel:
+
+One thread per connection (can be blocking I/O, but can also be non-blocking I/O).
+Each thread requires memory resources (also kernel memory!), that is a disadvantage. And every additional thread means more work for the scheduler.
+One thread for all connections.
+This takes load from the system because we have fewer threads. But it also prevents you from using the full performance of your machine, because you might end up driving one processor to 100% and letting all other processors idle around.
+A few threads where each thread handles some of the connections.
+This takes load from the system because there are fewer threads. And it can use all available processors. On Windows this approach is supported by Thread Pool API.
+
+
+https://crunchify.com/java-nio-non-blocking-io-with-server-client-example-java-nio-bytebuffer-and-channels-selector-java-nio-vs-io/
+
+
+https://dzone.com/articles/understanding-reactor-pattern-thread-based-and-eve
+http://kasunpanorama.blogspot.in/2015/04/understanding-reactor-pattern-with-java.html
+https://github.com/iluwatar/java-design-patterns/tree/master/reactor/src/main/java/com/iluwatar/reactor/app
+https://github.com/iluwatar/java-design-patterns/tree/master/reactor
+https://github.com/kasun04/rnd/tree/master/nio-reactor/src/main/java/org/panorama/kasun

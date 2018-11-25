@@ -1,0 +1,20 @@
+Kafka as an Event Store
+
+Let's take a simple example. We have a booking system that manages our bookings in a relational database. It uses all the ACID guarantees offered by the database to manage its state effectively and in general everyone is happy with it. No CQRS, no event sourcing, no microservices, just a reasonably well built traditional application. However there are a myriad of auxillary services (perhaps microservices) related to bookings: push notifications, emails, anti-fraud, integrations with third parties, the loyalty scheme, invoicing, cancellations, flight operations etc. The list can go on and on. They all need booking data and there are upteen different ways they can get it. They also produce their own data which in turn is useful for other applications.
+As far as all other applications are concerned this is the source of truth and they consume that single data source. Suddenly we go from a complex web of dependencies and technologies to producing and consuming to/from Kafka topics.
+
+Kafka as an event store:
+
+    If size is not a problem, Kafka can store the entire history of events, which means that a new application can be deployed and bootstrap itself from the Kafka log. Events that are complete representations of the state of the entity can be compacted with Log Compaction making this approach more feasible in many scenarios.
+    Events need to be replayed in the correct order. As long as messages are partitioned correctly we can replay the messages in order and apply the filters, transforms etc so that we always end up with the right data at the end. Depending on the "partitionability" of the data we can get highly parallelised processing of the data, in the right order.
+    The data model may need to change. May be we develop a new filter/transform function and want that replayed over all the events, or the events from the last week.
+
+    Kafka can be fed not only by applications in your organisation that publish all their state changes (or the result of state changes) but also from integrations with third party systems:
+
+        Periodic ETLs extract data from third party systems and dump it in Kafka
+        Some third party services offer web hooks and your triggered REST web services can write to Kafka.
+        Some third party services expose messaging system interfaces that can be subscribed to and written to Kafka.
+        Some third party system deliver data via CSV, which can get written to Kafka.
+
+    Going back to the issues I explained earlier. With a Kafka centric architecture we simplify data distribution. We know where the source of truth is, we know what the data sources are of that source of truth are and all the downstream applications work with derived copies of the data. Data flows from producers to consumers. Master data is owned by the producer alone but others can work on projections of that data freely. They can filter it, transform it, augment it with other data sources and store it in their own databases.
+

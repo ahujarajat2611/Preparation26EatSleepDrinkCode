@@ -1,0 +1,12 @@
+
+0
+down vote
+For raw logs, it is recommended to use a container file format like SequenceFileFormat, which supports both compression and splitting. For storing the logs using this format, you will have to chose timestamp as the key and logged line as the value. In our team, we use SequenceFiles extensively.
+
+For splittable LZO, you need to pre-process the files to generate the index. Without the index, the MapReduce framework will process the entire file as a single split (one mapper) and processing will be inefficient.
+
+In "Hadoop The Definitive Guide" book (I suggest you read the section on "Compression"), there is a section recommending the compression format to use. As per the recommendation, following are the choices from most effective to least effective:
+
+Container file formats like SequenceFile, Avro, ORCFiles, Parquet files with a fast compressor like LZO, LZ4 or Snappy
+Compression format that supports splitting: bzip2 or splittable LZO
+Split the file into chunks and compress each chunk separately using a compression format

@@ -1,0 +1,23 @@
+
+
+45
+down vote
+favorite
+21
+I would like to know the
+internals of the tomcat NIO connector.
+How exactly are threads used when we create a
+servlet that implements CometProcessor?Is it still one thread per connection?
+
+From what I read, the conversation goes like this
+
+Client connects to a servlet
+Servlet hangs on to the connection
+till there is any data available
+to the connected client
+When data is ready ,
+the server writes to the httpResponse
+ and flushes it. This actually disconnects the connection?
+Client sends another request
+ which the server again hangs onto..
+How many thread are used when this keeps happening?

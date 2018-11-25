@@ -1,0 +1,13 @@
+https://github.com/nipra/Jafun/tree/master/books/java-examples-nutshell-book/JavaExamples3/je3/nio
+
+page 179 book java in nutshell ( must)
+
+
+Easisst example you will come across
+http://www.baeldung.com/java-nio-selector
+https://gist.github.com/Botffy/3860641
+https://www.youtube.com/watch?v=nUI4zO6abH0&list=PLH2E1TjOet-wtsLbNEVs7SU_EeEvJNhVX
+
+https://github.com/jrudolph/Pooling-web-server/blob/master/src/main/java/virtualvoid/net/NioPooledWebServer.java
+http://tutorials.jenkov.com/java-nio/selectors.html
+https://crunchify.com/java-nio-non-blocking-io-with-server-client-example-java-nio-bytebuffer-and-channels-selector-java-nio-vs-io/

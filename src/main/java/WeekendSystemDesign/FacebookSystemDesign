@@ -1,0 +1,374 @@
+Update: I received a lot of emails and basically pushed them. I almost got an interview and I already got 4 offers.
+Many people are still interviewing.
+Fb has recently recruited a large number of people, and the building opposite the park has been covered. There are many vacancies.
+
+To provide an internal push, social recruits can be recruited, Tian Chao Mei Di can be, if you are interested, please send your resume to fbrefer@163.com
+To apply for a position as a coder, please at least ensure that the leetcode has been applied once, or the same level
+If you applied for in the last year, please do not apply again because of company policy.
+
+
+
+About the interview process
+Social Recruitment
+Electrical surface 1-2 rounds, usually coding
+Onsite is generally 4 rounds, 2 rounds of coding, 1 round of design, 1 round of behavior+coding
+If the school moves, then the design also becomes coding.
+
+
+
+About preparation
+1) algo/coding
+Suggest that you brush leetcode, basically cover to most common interview questions, and may encounter the original title
+. It should be noted that it is probably not enough to simply solve it and do bug free. The quality and speed of the code is also very
+important. There are some online answers that others can refer to, as far as possible to make the code simple and clear. Speed ​​on leetcode
+All the questions are done within 10 minutes.
+
+
+2) design
+Solving this kind of problem is a process of *communication*, or a process of giving loopbacks to the solution.
+General process:
+First of all you have to ask
+Then you can talk about the high level architecture, which is divided into several components, if
+Interact, draw a picture on the whiteboard;
+The interviewer may then let you go into some component detail discussion;
+It is also possible to change the requirement to let you redesign
+
+In addition, the f family also likes you to estimate the machine and the like, do some back-of-envelopme calculations. and so
+It's best to have a rough idea of ​​some of the computer-related basic constants, the amount of fb users, and so on.
+
+When preparing, it is recommended to look at fb's design high-frequency questions. On the one hand it is possible to meet these few when interviewing
+Topic, on the other hand, many designs are all connected.
+There was a post about this, the original post has been deleted, here is a backup http://blog.csdn.net/sigh1988/article/details/9790337
+
+Also add a little more material that I collected
+
+a) First of all you can learn about facebook's architecture as a whole
+http://www.quora.com/Facebook-Engineering/What-is-Facebooks-arc
+http://www.ece.lsu.edu/hpca-18/files/HPCA2012_Facebook_Keynote.
+http://www.quora.com/Facebook-Engineering/What-have-been-Facebo
+In addition to some of the information given below, there are many good things on the fb engineering page
+https://www.facebook.com/Engineering
+
+b) news feed
+There is a talk here
+http://www.infoq.com/presentations/Facebook-News-Feed
+Corresponding slides
+http://readme.skplanet.com/wp-content/uploads/2012/11/0-3_Faceb
+There are also some discussions on quora
+http://www.quora.com/Activity-Streams/What-are-the-scaling-issu
+http://www.quora.com/What-are-best-practices-for-building-somet
+http://www.quora.com/What-is-the-best-storage-solution-for-buil
+
+c) facebook chat
+There are two notes here. The second one contains the corresponding tech talk links.
+https://www.facebook.com/notes/facebook-engineering/facebook-chat/
+14218138919
+https://www.facebook.com/notes/facebook-engineering/chat-stability-and-
+scalability/51412338919
+
+d) typeahead search & graph search
+Tech talk and notes about typeahead search
+https://www.facebook.com/video/video.php?v=432864835468
+https://www.facebook.com/note.php?note_id=365915113919
+https://www.facebook.com/note.php?note_id=389105248919
+
+Paper on graph search, tech talk, notes. Which paper is worth a look.
+http://db.disi.unitn.eu/pages/VLDBProgram/pdf/industry/p871-cur
+https://newsroom.fb.com/Photos-and-B-Roll/4362/Graph-Search-Whiteboard
+https://www.facebook.com/note.php?note_id=10151240856103920
+https://www.facebook.com/note.php?note_id=10151347573598920
+https://www.facebook.com/note.php?note_id=10151361720763920
+https://www.facebook.com/note.php?note_id=10151432733048920
+https://www.facebook.com/note.php?note_id=10151755593228920
+
+e) facebook messages
+Two tech talks
+http://www.youtube.com/watch?v=XAuwAHWpzPc
+http://www.infoq.com/presentations/HBase-at-Facebook
+And eng notes
+https://www.facebook.com/note.php?note_id=10150148835363920
+https://www.facebook.com/note.php?note_id=10150162742108920
+
+f) photo storage
+Related papers and notes
+https://www.usenix.org/conference/osdi10/finding-needle-haystack-facebooks-
+photo-storage
+https://www.usenix.org/legacy/events/osdi10/tech/full_papers/Beaver.pdf
+https://www.usenix.org/legacy/events/osdi10/tech/slides/beaver.pdf
+https://www.facebook.com/note.php?note_id=76191543919
+
+g) social graph data store
+Related note, video, paper
+https://www.facebook.com/notes/facebook-engineering/tao-the-power-of-the-
+graph/10151525983993920
+https://www.usenix.org/conference/atc13/technical-sessions/presentation/
+bronson
+http://www.cs.cmu.edu/~pavlo/courses/fall2013/static/papers/117
+
+h) tiny URL
+Here are some discussions
+http://n00tc0d3r.blogspot.com/2013/09/big-data-tinyurl.html
+http://stackoverflow.com/questions/742013/how-to-code-a-url-sho
+http://stackoverflow.com/questions/3376163/what-are-the-things-
+
+i) POI
+Reference here
+http://www.slideshare.net/mmalone/scaling-gis-data-in-nonrelati
+http://www.mitbbs.ca/article_t/JobHunting/32476139.html
+
+
+3) behavior, suggest that you understand the fb's culture, prepare common behavior questions,
+Rehearsal before the interview.
+
+When the final interview approaches, you can brush your face again to find the feeling. Like glassdoor, mitbbs/jobhunting
+, careercup, there are a lot of these.
+
+If you have any other questions, please reply or PM me.
+
+
+System design is designed to read photo feeds on mobile phones.
+Function: Read friends' recent pictures
+View friends' albums
+Requirements: Reduce energy consumption for mobile phones while meeting functions.
+
+System desgin: Because I am a kernel background, let me use mutex, cv to implement a semephor, say first consider
+Single-core, and then extended to multi-core, but I only wrote a single-core no time, do not know how different the multi-core,
+Requires code compilable, MD third brother from the time came in no good face, this round of negative
+
+1) Give you 10g files, 1g memory, how many different numbers in total, the answer is to use the bit to record numbers, total
+4b interger, up to 0.5gb to record, follow up is how to do if only 400m, the answer is to put the number
+Hash or say scan file multiple times, each time the number of tails is not the same number, not code
+
+System design
+Ask how to implement Facebook messenger
+Gives a hierarchical infrascture.
+
+Design timeline group permissions, for example, user sends a status can choose a group
+Friends can be seen. The topic is very simple, but it will discuss the size of Facebook users, server estimates, social
+Graph storage. Feel like system design as long as you talk about a line of thought on the line, the interviewer will not go entangled too detailed
+thing.
+
+ Some Facebook related system design. Web pages use markup language define
+object, how to store these objects, how to define relationship between
+objects and users, how to search for relationship, how to find recently
+listened song by one user, one song may be listend by the same user in
+multiple times. etc.
+
+
+ American, system design, design systems can return top 10 listened songs from your
+friends.
+
+Given a location (a coordinate), return top 100 nearest places.
+Follow up, given a location, return top 100 events within x months in
+Nearest places. Follow up is actually adding a time dimension.
+
+The proposed solution is to do a grid for the plane coordinate system. The locations in each grid are placed on a machine. search for
+The time is to find a candidate for the location of the input (draw a circle with a radius), and then through
+Map-reduce finds the top 100 locations.
+
+Can be based on the density of the location of the grid or access to determine whether it is necessary to do a partition to improve
+scalability。
+
+Follow up is to add a dimension to represent time.
+
+
+White people, designing an online photo editing system, is completely inexperienced and can only follow the partition on the version.
+Backup, cache, etc. Answer while guiding. The face to the feedback are still positive.
+
+
+The fourth round: design, design mobile phone system, you can view the surrounding friends, restaurants, cinemas, etc.
+
+
+The first side of the system design. First ask how to find the sum of submatrix, the answer said to calculate in advance (0, 0), (i,
+The sum of j) can then use this sum to find other sums. Thinking that he will follow this question, what's the big design?
+System, the result is not, asked a question that is not related to this question, how to detect why a program is slow. then
+Answer first to determine if the bottleneck is cpu, disk io, or network io. Then ask him for each item.
+How to do it. Sometimes I didn't understand his problem in the process of communication. Anyway, the result of this side is very bad.
+I added another system design. I still hang on this surface.
+
+
+System design. The question is shorten url. Because this question was prepared before, so the answer should be
+It is very good. The interviewer did not ask me if I had seen this question, and I did not say I was ready.
+
+Electrical side:
+For a group of F users, as well as friends, the relationship between friends is two-way. Can you tell us about your friends?
+Into two partitions. Makes any two people with a direct friend relationship must be in different partition.
+
+
+The second round of system design: Lets design distributed large scale producer and consumer issues. There is a
+The heap machine is a producer, and a bunch of machines are consumers. Then by the way, I wrote a question of the word, and the range became single.
+The machine's producer and consumer, which implement the produce and consume functions, are actually equivalent to the fix size.
+Cache add and pop problems, do not consider multithreading
+
+
+A strong old American, advertising group, asked design questions. FB users send a lot of status every day
+Update, requires the design of a system that can perform keyword searches for updates in the last few days. I answered one
+Each index corresponds to a list of status update ids. The result of the query is the intersection of the list. I
+No experience with big data processing. It is unclear to what extent this round will be despised. In any case, the result is a pass....
+5. It is a Chinese buddy again. It looks like a technical cow. There are two arrays of length n, each storing screws and nuts.
+There is a one-to-one relationship between them, and there are no screws of the same size or nuts of the same size. There is a machine now
+Man, it can pick up a screw and a nut and try to screw them together. If successful, returns 0 if the snail
+Nails are greater than 1 for nuts and -1 for less than. In the initial case the two arrays are shuffled and need to be designed
+The algorithm lets the robot help you sort two arrays so that the screws and nuts on the two sides with the same index are a pair.
+Although this question is not a new topic, I haven't seen it yet. Although I think of it, I definitely want to use the quick sort idea.
+Tangled. Prompted to come up with the correct algorithm, it is on both sides to do partition at the same time. The code is very easy to write,
+After writing it was asked to analyze the complexity.
+
+
+Find the most frequent K URLs in a file containing a large number of URLs. First give a single hash table solution, not enough memory
+In the case, a solution was given to split large files into small files by hash values. Then was asked to parallelize and gave MapReduce
+solution. Then it is asked about the hash table related calculations, a hash table of M slots (hashed value range is 1~M, use linked list
+Handle the conflict), put N elements inside, assume their hash values ​​are randomly distributed, ask the elements in the slots
+The number of distributions, that is, the problems of balls and bins. No coding.
+
+
+Design a key-value store.
+2. Design Google search
+3. Architect a world-wide video distribution system
+4. Build Facebook chat
+5. Design News Feed
+
+
+The first round of system design is a very polite and friendly person. There are many machines and a similar design.
+A web crawler system. Then let me put the module diagram of the software running on each machine
+come out. Then give the uplink and downlink bandwidth, let the estimated time.
+
+
+The title is very simple: design news feeds. I would like to follow the system design thinking. The result is that the brother told me
+Regardless of system problems, I asked how to use Json to generate a news feed. Then drew a
+News feed, just like the facebook news feed we saw, then I asked each of the news feeds above
+How does the component generate data in the json on the client?
+For example, {
+    	Name:
+    	Image:
+    	Like:
+    	Comment:
+    	.
+    	.
+    	.
+}
+Then the whole process is to discuss what the specific data in JSON should be like.
+Another problem is that there are only one problem in the several rounds of coding. One of them hasn't even followed.
+Up, but I'm sure that I wrote it quickly and once it was bug free but still only had one problem. This is
+Normal or want to black my rhythm. . .
+
+=========================== I am split line ==================
+Slightly sum up
+
+1. Entry-level news feed
+http://www.quora.com/What-are-best-practices-for-building-somet
+http://www.infoq.com/presentations/Scale-at-Facebook
+http://www.infoq.com/presentations/Facebook-Software-Stack
+The general followup question is to estimate how many servers are needed
+Also discussed in this post
+http://www.mitbbs.ca/article_t/JobHunting/32463885.html
+This article mentions a little how to approach this kind of question, you can take a closer look
+http://book.douban.com/reading/23757677/
+
+
+2. facebook chat, this is also often asked
+http://www.erlang-factory.com/upload/presentations/31/EugeneLet
+https://www.facebook.com/note.php?note_id=14218138919
+http://www.cnblogs.com/piaoger/archive/2012/08/19/2646530.html
+http://essay.utwente.nl/59204/1/scriptie_J_Schipers.pdf
+
+3. typeahead search/search suggestion, this is also common
+https://www.facebook.com/video/video.php?v=432864835468
+The question was discussed in this post. Basically every question is answered in the video.
+http://www.mitbbs.com/article_t/JobHunting/32438927.html
+
+
+4. Facebook Messaging System(有提到inbox search, which has been asked before）
+Messaging system is a system that integrates all chat/sms/email and so on.
+http://www.infoq.com/presentations/HBase-at-Facebook
+http://sites.computer.org/debull/A12june/facebook.pdf
+http://www.slideshare.net/brizzzdotcom/facebook-messages-hbase/
+https://www.youtube.com/watch?v=UaGINWPK068
+
+
+5. Give a mobile phone location signal (latitude and longitude), need to return to POI near 5miles
+This is a discussion here, this looks like nyc love test ...
+http://www.mitbbs.ca/article0/JobHunting/32476139_0.html
+
+
+6. Implement second/minute/hour/day counters
+This question really doesn't feel like system design, but if you ask, you still have to prepare. It looks like you will be asked at the headquarters interview.
+Road ....
+This post has discussions
+http://www.mitbbs.com/article_t/JobHunting/32458451.html
+
+
+7. Facebook photo storage, this will not be asked, but I know it is also good
+https://www.usenix.org/legacy/event/osdi10/tech/full_papers/Beaver.pdf
+https://www.facebook.com/note.php?note_id=76191543919
+
+
+8. facebook timeline, this is not too a question, take a look on the line
+https://www.facebook.com/note.php?note_id=10150468255628920
+http://highscalability.com/blog/2012/1/23/facebook-timeline-bro
+
+
+In addition to these, prepare these topics
+implement memcache
+http://www.adayinthelifeof.nl/2011/02/06/memcache-internals/
+
+implement tinyurl（以及distribute across multiple servers)
+http://stackoverflow.com/questions/742013/how-to-code-a-url-sho
+
+determine trending topics(twitter)
+http://www.americanscientist.org/issues/pub/the-britney-spears-
+http://www.michael-noll.com/blog/2013/01/18/implementing-real-t
+
+copy one file to multiple servers
+http://vimeo.com/11280885
+
+A little know about the dynamo key value store, and google's gfs and big table
+
+
+Also recommend some websites
+http://highscalability.com/blog/category/facebook
+There is a lot of talk about system design on this high scalability, not just Facebook, not empty
+Well, just look at the one you want to interview.
+facebook engineering blog
+http://www.quora.com/Facebook-Engineering/What-is-Facebooks-arc
+http://stackoverflow.com/questions/3533948/facebook-architectur
+
+Other home
+http://www.quora.com/What-are-the-top-startup-engineering-blogs
+
+
+==================================================================
+Talking about how to prepare for such an interview
+First of all if you don't even have availability/scalability/consistency/partition
+If I read it, I suggest going to wikipedia first or looking for a website that teaches this course at a certain university to take a closer look.
+Do not know
+This link is also good
+http://www.aosabook.org/en/distsys.html
+
+If you know all these basic things, then I think you are almost like most people who have no practical experience.
+Levels...
+What can be done is to prepare a little bit, if you still have enough time, it is recommended that you from the company that you interview
+The engineering blog looks at the technology stack/product of the home, and then it can
+Find the interview questions are done again .... We do the wording of the problem is not white title tactics ... and if you
+If you look at it, you will really see it. You will find that many places have the same point.
+Scoop...
+
+Then there is the question of how to apply for the interview. I talk about my approach.
+1. product spec/usage scenario and interviewer confirm what this thing is exactly
+Several major functionality can be listed first, and then there is time, then add some more important
+Write down everything you want
+
+2. define some major components
+Is to draw a few circle frames, each one to express your opinion .... and then tell them how to interact
+
+The above is question specific.
+After this is over, we can say that every question is used, for example,
+How scale/how to achieve partition/how to achieve consistency, these things can be applied to any question
+
+
+
+Of course, the problems we face and the methods we use to solve problems may be different. It's not necessarily that we have a way down for each question.
+The most important thing is to be organized in the topics, to make the drawings clear, to maintain communication with the interviewer, and to ask people at any time.
+Home opinions.
+
+There are so many things that I can think of. Welcome everyone to communicate. I hope everyone can find the ideal job.

@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2b4ab438-4c0b-4fc7-a54f-6d81f348aa06" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/Introduction.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/Introduction.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/awesome-slides/2012-Intro-to-Spark-Internals-MateiZ.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/awesome-slides/2012-Intro-to-Spark-Internals-MateiZ.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/awesome-slides/2014-A-Deeper-Understanding-of-Spark-Internals-Aaron-Davidson.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/awesome-slides/2014-A-Deeper-Understanding-of-Spark-Internals-Aaron-Davidson.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/awesome-slides/2015-Advanced-Apache-Spark-Training-Sameer.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/awesome-slides/2015-Advanced-Apache-Spark-Training-Sameer.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/awesome-slides/2015-Visual-Spark-API-Databricks.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/awesome-slides/2015-Visual-Spark-API-Databricks.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/awesome-slides/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/awesome-slides/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/ide-setup.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/ide-setup.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/job-schedule.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/job-schedule.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-LogQueryCode.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-LogQueryCode.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-addDepJars.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-addDepJars.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-debug.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-debug.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-examplesDeps.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-examplesDeps.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-flumeSinkError.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-flumeSinkError.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-missDepJars.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-missDepJars.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-moduleFlumeSink.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-moduleFlumeSink.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-openIDE.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-openIDE.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-packageAndRun.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-packageAndRun.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-runConfig.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-runConfig.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-runLogQuery.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-runLogQuery.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-runLogQuerySuccessfully.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/01-runLogQuerySuccessfully.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-PairRDDFunctions.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-PairRDDFunctions.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-TransformationAndActions.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-TransformationAndActions.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-dependencies.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-dependencies.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-flatten.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-flatten.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-flattenTest.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-flattenTest.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-flattenX.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-flattenX.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-lineageGraph.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-lineageGraph.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-rdd.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-rdd.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-rddAbstraction.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-rddAbstraction.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-rddImplicit.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-rddImplicit.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-rddRepresentation.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-rddRepresentation.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-sbtTest.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-sbtTest.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-schedulingProcess.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/02-schedulingProcess.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/14821230664592.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/media/14821230664592.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/rdd-abstraction.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/rdd-abstraction.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2010 Spark Cluster Computing with Working Sets.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2010 Spark Cluster Computing with Working Sets.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2012 Discretized Streams An Efficient and Fault-Tolerant Model for Stream Processing on Large Clusters.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2012 Discretized Streams An Efficient and Fault-Tolerant Model for Stream Processing on Large Clusters.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2012 Shark Fast Data Analysis Using Coarse-grained Distributed Memory.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2012 Shark Fast Data Analysis Using Coarse-grained Distributed Memory.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2013 Discretized Streams Fault-Tolerant Streaming Computation at Scale.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2013 Discretized Streams Fault-Tolerant Streaming Computation at Scale.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2013 Shark SQL and Rich Analytics at Scale.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2013 Shark SQL and Rich Analytics at Scale.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2014 GraphX Unifying Data-Parallel and Graph-Parallel Analytics.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2014 GraphX Unifying Data-Parallel and Graph-Parallel Analytics.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2015 Spark SQL Relational Data Processing in Spark.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2015 Spark SQL Relational Data Processing in Spark.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2016 MLlib Machine Learning in Apache Spark.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/2016 MLlib Machine Learning in Apache Spark.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/201611 Apache Spark A Unified Engine for Big Data Processing.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/201611 Apache Spark A Unified Engine for Big Data Processing.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/Resilient Distributed Datasets A Fault Tolerant Abstraction for In-Memory Cluster Computing.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes/research-papers/Resilient Distributed Datasets A Fault Tolerant Abstraction for In-Memory Cluster Computing.pdf" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="700623351">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.27" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="Container" value="1" />
+          <entry key="CoreJava" value="1" />
+          <entry key="DataBaseIndexing" value="1" />
+          <entry key="DesignKafka" value="1" />
+          <entry key="Discussion" value="1" />
+          <entry key="FaceBookSystemDesignLinks" value="1" />
+          <entry key="HLL" value="1" />
+          <entry key="KafkaSourceCode" value="1" />
+          <entry key="Kubernets" value="1" />
+          <entry key="Networking" value="1" />
+          <entry key="NumberDivideBy5" value="1" />
+          <entry key="OnlineEditor" value="1" />
+          <entry key="OperatingSystem" value="1" />
+          <entry key="QuoraWhatsApp" value="1" />
+          <entry key="ReactiveProgramming" value="1" />
+          <entry key="ScalaDays" value="1" />
+          <entry key="SystemDesignGitHubrepo" value="1" />
+          <entry key="ThriftServer" value="2" />
+          <entry key="WeekendSystemDesignLinksAfterTwitter" value="1" />
+          <entry key="WhatAppConnections" value="1" />
+          <entry key="YoutubeLiveStreamingProtocol" value="2" />
+          <entry key="course" value="2" />
+          <entry key="databaseclustering" value="1" />
+          <entry key="dockercourse" value="1" />
+          <entry key="guice" value="1" />
+          <entry key="java" value="25" />
+          <entry key="mapreducesourcecode" value="1" />
+          <entry key="scala-labs" value="1" />
+          <entry key="sparkdesignpatterns" value="1" />
+          <entry key="sparkjoin" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="25" />
+          <entry key="PLAIN_TEXT" value="33" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="12" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="12" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/YoutubeLiveStreamingProtocol">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="6" column="16" selection-start-line="6" selection-end-line="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/SystemDesignQuestions.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/QuoraWhatsApp">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/Kubernetes/Container">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/Kubernetes/course">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/Kubernetes/Kubernets">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/WeekendSystemDesignLinksAfterTwitter">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3976">
+              <caret line="142" column="88" selection-start-line="142" selection-start-column="88" selection-end-line="142" selection-end-column="88" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/FaceBookSystemDesignLinks">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/FastBloomFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/WhatAppConnections">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/spark-notes" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/DSA/trees/binary/Lca.java" />
+        <option value="$PROJECT_DIR$/src/main/java/BasicAlgorithms/Stack/NextGreaterElement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/DSA/Mathematical/MaxAMine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/BasicAlgorithms/BackTracking/CombinationSum.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SystemDesignCodes/LfuCache.java" />
+        <option value="$PROJECT_DIR$/src/main/java/DSA/Mathematical/NumberDivideBy5" />
+        <option value="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/WeekendSystemDesignLinksAfterTwitter" />
+        <option value="$PROJECT_DIR$/src/main/java/WeekendSystemDesign/FaceBookSystemDesignLinks" />
+      </list>
+    </option>
+  </component>
+  <component name="PantsLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$USER_HOME$/twitterrepo/twittersourcecode26/pants/examples" value="PREVIEW" />
+        <entry key="$USER_HOME$/twitterrepo/twittersourcecode26/pantsagain/pants" value="PREVIEW" />
+        <entry key="$USER_HOME$/twitterrepo/twittersourcecode26/pantsagain/pants/examples/src/java/org/pantsbuild/example/hello" value="PREVIEW" />
+        <entry key="$USER_HOME$/twitterrepo/twittersourcecode26/pantsagain/pants/examples/src/scala/org/pantsbuild/example/hello" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/bizinsights/src/main/scala/com/twitter/bizinsights/jobs" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/bizinsights/src/test/scala/com/twitter/bizinsights/jobs" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/cortex-core" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/hub/blink/src/main/scala/com/twitter/hub/blink/data_loader/loaders/BUILD" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/sandbox" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/sandbox/users/pankajg" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter/cdl/common/blobstore/BUILD" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter/cdl/scalding" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter/cdl/scalding/BUILD" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter/exchange/data/jobs" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter/scalding_internal" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter/scalding_internal/drscalding" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter/scalding_internal/examples" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter/scalding_internal/examples/hashtagtopn" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter/scalding_internal/examples/scheduled_execution" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter/scalding_internal/parquet_thrift/BUILD" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter/scalding_internal/scalding-fightclub-course/src/scala/com/twitter/scaldingcourse/scaldingadvancedoperations" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter/scalding_internal/scalding-fightclub-course/src/scala/com/twitter/scaldingcourse/scaldingadvancedoperations/BUILD" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter/scalding_internal/scalding-fightclub-course/src/scala/com/twitter/scaldingcourse/scaldingattwitter/BUILD" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter/scalding_internal/scalding-fightclub-course/src/scala/com/twitter/scaldingcourse/sourcesink/BUILD" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/src/scala/com/twitter/simple_client_event" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/tsar" value="PREVIEW" />
+        <entry key="$USER_HOME$/workspace/source/university/devnho" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="22" />
+    <option name="y" value="34" />
+    <option name="width" value="1658" />
+    <option name="height" value="804" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Preparation26EatSleepDrinkCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Preparation26EatSleepDrinkCode" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Preparation26EatSleepDrinkCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Preparation26EatSleepDrinkCode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Preparation26EatSleepDrinkCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Preparation26EatSleepDrinkCode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Preparation26EatSleepDrinkCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Preparation26EatSleepDrinkCode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Preparation26EatSleepDrinkCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Preparation26EatSleepDrinkCode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Nio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Preparation26EatSleepDrinkCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Preparation26EatSleepDrinkCode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="WeekendSystemDesign" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Preparation26EatSleepDrinkCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Preparation26EatSleepDrinkCode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="WeekendSystemDesign" type="462c0819:PsiDirectoryNode" />
+              <item name="DatabaseDesign" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Preparation26EatSleepDrinkCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Preparation26EatSleepDrinkCode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="WeekendSystemDesign" type="462c0819:PsiDirectoryNode" />
+              <item name="Kubernetes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Preparation26EatSleepDrinkCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Preparation26EatSleepDrinkCode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="WeekendSystemDesign" type="462c0819:PsiDirectoryNode" />
+              <item name="FastBloomFilter.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="Preparation26EatSleepDrinkCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Preparation26EatSleepDrinkCode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectFilesPane">
+        <option name="show-excluded-files" value="true" />
+        <option name="show-only-loaded-files" value="false" />
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543149671085" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.MatrixChainMultiplication">
+    <configuration name="ArraysJavaUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DSA.Java.ArraysJavaUtil" />
+      <module name="Preparation26EatSleepDrinkCode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DSA.Java.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BattleshipsInBoard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DSA.Dp.BattleshipsInBoard" />
+      <module name="Preparation26EatSleepDrinkCode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DSA.Dp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MatrixChainMultiplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DSA.Dp.MatrixChainMultiplication" />
+      <module name="Preparation26EatSleepDrinkCode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DSA.Dp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VerticalSum" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DSA.trees.binary.VerticalSum" />
+      <module name="Preparation26EatSleepDrinkCode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DSA.trees.binary.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Twisted Trial">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.VerticalSum" />
+      <item itemvalue="Application.ArraysJavaUtil" />
+      <item itemvalue="Application.BattleshipsInBoard" />
+      <item itemvalue="Application.MatrixChainMultiplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MatrixChainMultiplication" />
+        <item itemvalue="Application.BattleshipsInBoard" />
+        <item itemvalue="Application.ArraysJavaUtil" />
+        <item itemvalue="Application.VerticalSum" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$USER_HOME$/twitterrepo/scaldinglearning/scalding" value="PREVIEW" />
+        <entry key="$USER_HOME$/twitterrepo/twittersourcecode26/pantsagain/pants/.idea/pants-projects/examples/src/java/org/pantsbuild/example/untitled" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2b4ab438-4c0b-4fc7-a54f-6d81f348aa06" name="Default Changelist" comment="" />
+      <created>1543131709563</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1543131709563</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="22" y="34" width="1658" height="804" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Designer" order="0" />
+      <window_info id="UI Designer" order="1" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Image Layers" order="4" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.25309405" />
+      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Phabricator" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="2" />
+      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="4" weight="0.3286517" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info anchor="bottom" id="Find" order="6" />
+      <window_info anchor="bottom" id="Pants Console" order="7" />
+      <window_info anchor="bottom" id="Run" order="8" visible="true" weight="0.3286517" />
+      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="12" />
+      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="right" id="Theme Preview" order="1" />
+      <window_info anchor="right" id="Palette&#9;" order="2" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/BasicAlgorithms/BackTracking/CombinationSum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="18" column="3" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SystemDesignCodes/LfuCache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="34" column="17" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DSA/trees/binary/VerticalSum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-997">
+          <caret line="32" column="17" lean-forward="true" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DSA/Java/ArraysJavaUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="11" column="12" lean-forward="true" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DSA/Dp/BattleshipsInBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="59" column="5" lean-forward="true" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DSA/Dp/MatrixChainMultiplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/docker/dockercourse">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/MapReduceSourceCode/mapreducesourcecode">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="2" column="10" selection-start-line="2" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/ObserverBest/ObserverTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="96" column="6" selection-start-line="96" selection-start-column="6" selection-end-line="96" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/OnlineEditor/OnlineEditor">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1337" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/ReactiveProgramming/ReactiveProgramming">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/scala/scala-labs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/sparkdesignpatterns/sparkdesignpatterns">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="2" column="66" selection-start-line="2" selection-start-column="66" selection-end-line="2" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/DesignInstagram.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1445">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/DesignKafka">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/MemcachedScaling.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/CountAndSay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Infoworks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/LongestChain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/SpringBootHibernate/course">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/SystemDesignGitHubRepo/SystemDesignGitHubrepo">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="1" column="17" selection-start-line="1" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DSA/Mathematical/NumberDivideBy5">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="116" selection-start-column="116" selection-end-column="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DSA/Mathematical/NumberOfDaysBetweenTwoDates.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SystemDesignCodes/Threading/ConcurrencyPractical/LockingTutorial.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Nio/SingleThreadedBlockingServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="docComment;class#SingleThreadedBlockingServer#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Algorithms6hourTraining/AverageLevels.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Algorithms6hourTraining/ConcatenateWords.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/databaseclustering/databaseclustering">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/DatabaseDesign/DataBaseIndexing">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/DatabaseDesign/HLL">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/Guice/guice">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/kafkasourcecode/KafkaSourceCode">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/Networking/ThriftServer">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/Networking/Networking">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/OperatingSystem/OperatingSystem">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/pubsubusingredis/Subscriber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/ScalaDays/ScalaDays">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/sparkjoin/sparkjoin">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/CoreJava">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/Discussion">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-387">
+          <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/FastBloomFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/WhatAppConnections">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/YoutubeLiveStreamingProtocol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="6" column="16" selection-start-line="6" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/SystemDesignQuestions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/QuoraWhatsApp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/Kubernetes/Container">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/Kubernetes/course">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/Kubernetes/Kubernets">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/WeekendSystemDesignLinksAfterTwitter">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3976">
+          <caret line="142" column="88" selection-start-line="142" selection-start-column="88" selection-end-line="142" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/WeekendSystemDesign/FaceBookSystemDesignLinks">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Python 2.7 (hello) interpreter library</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Preparation26EatSleepDrinkCode</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: org.apache.commons:commons-pool2:2.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

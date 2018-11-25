@@ -1,0 +1,194 @@
+https://codereview.stackexchange.com/questions/47851/multi-threaded-socket-server-high-load
+
+private class Conn{
+        public Socket s;
+        public boolean isRequesting;
+        public PrintWriter writer;
+        public String id;
+        public BufferedReader reader;
+        Conn(Socket s, boolean isRequesting, String id, PrintWriter writer, BufferedReader reader){
+            this.s = s;
+            this.isRequesting = isRequesting;
+            this.id = id;
+            this.writer = writer;
+            this.reader = reader;
+        }
+
+        public void close() throws IOException{
+            s.close();
+        }
+    }
+
+    private class GameHandler{
+
+            private volatile Conn a;
+            private volatile Conn b;
+
+            private Thread aReadThread;
+            private Thread bReadThread;
+            private Thread messageThread;
+
+            private Runnable aReadRunnable;
+            private Runnable bReadRunnable;
+            private Runnable messageRunnable;
+
+            private volatile PrintWriter aWriter;
+            private volatile PrintWriter bWriter;
+
+            private volatile BufferedReader aReader;
+            private volatile BufferedReader bReader;
+
+            private volatile boolean aIsReady;
+            private volatile boolean bIsReady;
+
+            private volatile boolean isGameRunning;
+            public GameHandler(final Conn s1, final Conn s2){
+                this.a = s1;
+                this.b = s2;
+                isGameRunning = true;
+                try {
+                    aWriter = a.writer;
+                    bWriter = b.writer;
+                    aReader = a.reader;
+                    bReader = b.reader;
+                } catch (Exception e) {
+                    try {
+                        isGameRunning = false;
+                        a.close();
+                        b.close();
+                    } catch (IOException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    System.out.println(e.toString());
+                }
+
+                messageRunnable = new Runnable(){
+
+                    @Override
+                    public void run() {
+                        System.out.println(a.id + " " + b.id);
+
+                        messageThread = Thread.currentThread();
+                        for(int i = 0; i < 6; i++){
+                            if(isGameRunning){
+                                try{
+                                    Thread.sleep(4000);
+                                }catch(InterruptedException e){
+
+                                }
+                            }
+                        }
+
+                        //end game
+                        isGameRunning = false;
+                        try {
+                            a.close();
+                            b.close();
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }
+
+                };
+
+                aReadRunnable = new Runnable(){
+
+                    @Override
+                    public void run() {
+                        aReadThread = Thread.currentThread();
+                        String line = null;
+                        try {
+                            while (isGameRunning && (line = aReader.readLine()) != null &&  !(line = aReader.readLine()).equals("FIN")){
+                                bWriter.println(line);
+                            }
+                            a.close();
+                            System.out.println(a.id + " done");
+                        } catch (Exception e) {
+                            try {
+                                isGameRunning = false;
+                                a.close();
+                                b.close();
+                            } catch (IOException e1) {
+                                // TODO Auto-generated catch block
+                                e1.printStackTrace();
+                            }
+                            System.out.println(e.toString());
+                        }
+                    }
+
+                };
+
+                bReadRunnable = new Runnable(){
+
+                    @Override
+                    public void run() {
+                        bReadThread = Thread.currentThread();
+                        String line = null;
+                        try {
+                            while (isGameRunning && (line = bReader.readLine()) != null &&  !(line = bReader.readLine()).equals("FIN")){
+                                aWriter.println(line);
+                            }
+                            b.close();
+                            System.out.println(b.id + " done");
+                        } catch (Exception e) {
+                            try {
+                                isGameRunning = false;
+                                a.close();
+                                b.close();
+                            } catch (IOException e1) {
+                                // TODO Auto-generated catch block
+                                e1.printStackTrace();
+                            }
+                            System.out.println(e.toString());
+                        }
+                    }
+                };
+            }
+
+            public void execute() {
+                executorService.execute(messageRunnable);
+                executorService.execute(aReadRunnable);
+                executorService.execute(bReadRunnable);
+            }
+        }
+
+
+
+        private static class Server{
+
+            private static final int NUM_THREADS = 2400;
+
+            private ExecutorService executorService;
+
+            private ServerSocket serverSocket;
+
+            private int listeningPort;
+
+            public volatile boolean isRunning;
+
+            private Thread mainThread;
+
+            private volatile Map<String, Conn> playRequests;
+
+            public Server(int port){
+
+                try {
+                    executorService = Executors.newFixedThreadPool(NUM_THREADS);
+                    listeningPort = port;
+                    serverSocket = new ServerSocket(listeningPort);
+                    isRunning = true;
+                    playRequests = new ConcurrentHashMap<String, Conn>();
+                    mainThread = new Thread(new Runnable(){
+
+                        @Override
+                        public void run() {
+                            handleIncomingConnections();
+                        }
+                    });
+
+                } catch (IOException e) {
+                    System.out.println(e.toString());
+                }
+            }

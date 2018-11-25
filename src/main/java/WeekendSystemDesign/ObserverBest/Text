@@ -1,0 +1,28 @@
+
+Public Interface Observer:
+
+Any class who implements this interface must be notified when subject or observable object change its status.
+
+Update (Observable Ob, Object arg): This method is called when subject is changed.
+
+
+Read more: http://javarevisited.blogspot.com/2011/12/observer-design-pattern-java-example.html#ixzz5AI4b5rY0
+
+
+
+
+
+Some Important Method:
+addObserver(Observer o):add Observers in the set of observers for this subject or observalbel object.
+
+deleteObserver(Observer o): delete Observers in the set of observers .
+
+hasChanged():check if object has changed.
+
+clearChanged():this method will indicate that subject has no changes or all the observers has been notified when changes is made.
+
+notifyObservers(): notify all the observers if object has changed .
+
+
+Read more: http://javarevisited.blogspot.com/2011/12/observer-design-pattern-java-example.html#ixzz5AI4LPQ00
+

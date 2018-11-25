@@ -1,0 +1,895 @@
+Title: facebook interview preparation
+letter Station: BBS Unnamed Space Station (Tue Jul 22 11:01:17 2014, the eastern United States)
+
+
+about the interview process
+social move, then
+the electrical surface 1-2 Round, generally coding
+onsite is generally 4 rounds, 2 rounds of coding, 1 round of design, 1 round of behavior+coding
+school moves, then round design also becomes coding.
+
+
+
+About preparation
+1) algo/coding
+recommends that you brush leetcode, basic Cover to most of the common interview questions, and may encounter the original title
+. It should be noted that it is probably not enough to simply solve it and do bug free. The quality and speed of the code are also very
+important. There are some online answers that others can refer to, as far as possible to make the code simple and clear.
+All the questions on the leetcode speed were written within 10 minutes.
+
+
+2) The
+solution to this problem is the process of *communication*, or the process of giving a solution and then obtaining feedback.
+The general process:
+first you need to ask clearly;
+then you can talk about the high level architecture, which is divided into several components, if they
+interact, draw a picture on the whiteboard;
+then the interviewer may let you go to a component Detail discussion
+It is also possible to change the requirement to allow you to redesign.
+
+In addition, f home also likes you to estimate the machine and the like, do some back-of-envelopme calculation. So it's
+best to have a general understanding of some of the computer-related basic constants, the amount of fb users, and so on.
+
+When preparing, it is recommended to look at fb's design high-frequency questions. On the one hand, it is possible to meet these
+topics at the time of the interview . On the other hand, many designs are connected.
+Before there was a post about this, the original post has been deleted, here is a backup http://blog.csdn.net/sigh1988/article/details/9790337
+
+In addition to the material I collected
+
+a) First of all you can from the overall Check out facebook's architecture
+http://www.quora.com/Facebook-Engineering/What-is-Facebooks-arc
+http://www.ece.lsu.edu/hpca-18/files/HPCA2012_Facebook_Keynote.
+http:// www.quora.com/Facebook-Engineering/What-have-been-Facebo
+In addition to some of the information given below, the fb engineering page has a lot of good content
+https://www.facebook.com/Engineering
+
+b) news feed
+There is a talk here
+http://www.infoq.com/presentations/Facebook-News-Feed's
+corresponding slides
+http://readme.skplanet.com/wp-content/uploads/2012/11/0-3_Faceb
+There are also some quora discussions
+http://www.quora.com/Activity-Streams/What-are-the-scaling-issu
+http://www.quora.com/What-are-best-practices-for-building-somet
+http:// www.quora.com/What-is-the-best-storage-solution-for-buil
+
+c) facebook chat
+There are two notes here. The second one contains the corresponding tech talk links
+https://www.facebook. .com/notes/facebook-engineering/facebook-chat/
+14218138919
+https://www.facebook.com/notes/facebook-engineering/chat-stability-and-
+scalability/51412338919
+
+d) typeahead search & graph search
+on typeahead search Tech talk and notes
+Https://www.facebook.com/video/video.php?v=432864835468
+https://www.facebook.com/note.php?note_id=365915113919
+https://www.facebook.com/note.php? Note_id=389105248919
+
+paper about graph search, tech talk, notes. Which paper is worth a look.
+http://db.disi.unitn.eu/pages/VLDBProgram/pdf/industry/p871-cur
+https://newsroom.fb.com/Photos-and-B-Roll/4362/Graph-Search-Whiteboard
+https: //www.facebook.com/note.php?note_id=10151240856103920
+https://www.facebook.com/note.php?note_id=10151347573598920
+https://www.facebook.com/note.php?note_id=10151361720763920
+https ://www.facebook.com/note.php?note_id=10151432733048920
+https://www.facebook.com/note.php?note_id=10151755593228228920
+
+e) facebook messages
+two tech talks
+http://www.youtube.com/watch?v=XAuwAHWpzPc
+http://www.infoq.com/presentations/HBase-at-Facebook
+and eng notes
+https://www.facebook.com/note.php?note_id =10150148835363920
+https://www.facebook.com/note.php?note_id=10150162742108920
+
+f) photo storage
+related papers and notes
+https://www.usenix.org/conference/osdi10/finding-needle-haystack-facebooks-
+Photo-storage
+https://www.usenix.org/legacy/events/osdi10/tech/full_papers/Beaver.pdf
+https://www.usenix.org/legacy/events/osdi10/tech/slides/beaver.pdf
+https ://www.facebook.com/note.php?note_id=76191543919
+
+g) social graph data store
+related notes, video, paper
+https://www.facebook.com/notes/facebook-engineering/tao-the-power-of-the-
+graph/10151525983993920
+https://www.usenix.org/conference/atc13/technical-sessions/presentation/
+bronson
+http://www.cs.cmu.edu/~pavlo/courses/fall2013/static/papers/117
+
+h) tiny URL
+这里有一些讨论
+http://n00tc0d3r.blogspot.com/2013/09/big-data-tinyurl.html
+http://stackoverflow.com/questions/742013/how-to-code-a-url-sho
+http://stackoverflow.com/questions/3376163/what-are-the-things-
+
+i) POI
+参考这里
+http://www.slideshare.net/mmalone/scaling-gis-data-in-nonrelati
+http://www.mitbbs.ca/article_t/JobHunting/32476139.html
+
+
+3) behavior，建议大家了解一下fb的culture，准备一下常见的behavior questions，
+Rehearsal before the interview.
+
+When the final interview approaches, you can brush your face again to find your feelings.
+There are a lot of things like glassdoor, mitbbs/jobhunting , careercup.
+Posted by Bin Mu at 2:22 PM No comments:
+Email This
+BlogThis!
+Share to Twitter
+Share to Facebook
+Share to Pinterest
+
+Labels: system
+Sunday, June 14, 2015
+Sender: Beanbun (Beanbags), Area: JobHunting
+Title: Return this edition, some time ago, riding a donkey , looking for a horse , FGU, etc. Offer Summary [Updated FGU]
+Keywords: Surface
+Transcription Station: BBS Unnamed Space Station ( Sat Jun 13 17:27:31 2015, the eastern United States)
+
+some time ago looking any finally come to an end, I feel this edition of technical and stick by stick surfaces to help very large, but also very grateful to
+thank the brightest Daniel shared resources. I hope to provide some information and personal feelings to children's shoes that are still looking for work. It is best to help
+, but after all, my qualifications are still shallow. If there is something wrong, please lightly spray.
+
+Background:
+ms graduated less than two years
+
+major application company:
+offer: facebook, google, uber, patanir, sumo logic, walmartlab, yahoo,
+amazon, apple
+reject: dropbox
+
+main package:
+U: 145k base + 25k shares RSU
+F: 150k base + 40k signon + 10%bonus + 260k usd RSU
+W: 165k base + 50k signon + 20%bonus + 35k usd RSU per year (
+this is slightly more complicated, equivalent to a refresh of 35k usd RSU per year, but refresh every four years Give) a look
+
+and feel of each company:
+
+Yahoo:
+The first face of the company, face a Flurry Team, Yahoo last year acquired a small company in the city, so different
+set representative. Since re-org I got the offer after two months, I gave it to the other team several times in the middle
+. Yahoo was more turbulent and I was not optimistic about it.
+
+Electric face:
+and director talked for two hours without coding, asked a lot of content and hadoop before the project related to internal
+content.
+Finally, we discussed a design, how to design a distributed key-value store, because they mainly use
+HBase.
+
+Programming Test:
+Validate Soduko Solution, reads the solution from the file, writes the program as much as possible using the production standard.
+
+Onsite:
+Five rounds of Onsite without coding, all about how to solve practical problems and design.
+1. How to design a priorityqueue service, client can submit job request and then the server
+according to the priority
+2. Need a key-value store with 1M qps, most read, 1ms 99% latency, if you use
+HBase then there will be any problem, how to solve
+3 give a lot of integers, how to find a mapreduce median, if the number is a lot of float, there may be some errors
+, how to find
+4. Programming extended Test if soduku matrix is very large how to do
+Then there are a lot of questions about how to optimize in the various scenarios of hadoop.
+
+After the onsite is finished, their directors say very positive, and then they start re-org for two months. What Flurry does
+is actually very interesting. Mobile analytics platform #1, I feel that their engineers are very nice
+and their standards are very good, but unfortunately no fate.
+
+################################################## ##########################
+###########
+
+Apple:
+Practice Company 1, Apple can have many groups at the same time, Each group has its own recruiter. After I handed to resume
+after another 10 groups to contact me, and then each group are basically two before the onsite phone, she did not experience with
+the Department of the four groups later found it too much physical, optical surface to eight. The last 3 groups were onsite. Here I made
+a mistake and told them that I was in other groups. Once they knew you were in the other group, they wouldn't follow up
+. So in the end I only had a group onsite.
+
+Electrical surface:
+1. Give the plane a bunch of points, group together all the points on the same line, find all the group
+2. An encoding method, if a byte first bit is 0, such as 00000000, That it itself represents
+a character, if the first bit of a byte is 1, such as 10000000, then it and the byte table immediately following it
+Show a character, now give a byte array, determine whether the last character is a byte or two bytes.
+3.parse message from byte stream, message format int value from the first four bytes composition represented
+the length L of the message, and then behind the L byte is continuous real content message, each message is this
+kind of representation, while the need to read Byte stream parse each message
+4. Which methods do two tables do join, which are drawback
+5. merge two sorted list
+6. sqrt(double number, double epsilon)
+7. auto completion implementation using trie
+8. edit Distance
+9. Implement blockingqueue
+10. How is a hive query transferred to mapreduce jobs
+
+Onsite:
+1. Given a list of pairs, pair.first represents parent, and pair.second represents child,
+reconstruct the tree, return the root node.
+2. auto Completion - design the service
+3. design a service, accept stream of events, each event has a type and
+timestamp, need to support the query of top k most frequent types in a query
+specified [start, end] time range.
+4. closest number to target in BST
+5. validate soduku / solve soduku, and optimizations
+6. 给一个json object，给一个wildcard path with ‘?’ as arbitrary databaseName，比如
+a.?.b 找到所有符合path的objects
+
+Apple一般onsite的时候4轮tech interview，中午的时候将来的manager带着吃午饭。
+如果tech这4轮面的好会有第5轮见到hiring manager，如果有这一轮基本说明offer没
+啥问题了，这轮会是一堆behavior。如果第5轮也没啥问题会有第6轮见大boss，继续
+behavior，会问之前做过的project有多牛叉，会吹就行。
+
+同等级下Apple的offer远不如FG给力，而且match不上去，bonus也不会写在offer
+letter里面，虽然据说每年的refresh有些组相当多，但是感觉整体上跟FG还是差距比
+较大。而且组跟组工作强度差别也很大，有些组忙死有些组闲死，不过software的组一
+It's okay, and it feels like most people are in good spirits.
+
+As far as the engineering level is concerned, I have encountered quite a good level of interviewer, but the overall standard is far inferior to FG.
+Each group's project is completely separate and basically does not communicate. Do something completely product driven, but the
+engineer generally require fullstack, needs its own end to end to maintain a product, this is for some people may
+be able to still relatively attractive.
+
+################################################## ##########################
+###########
+
+Amazon:
+Hands-on company 2, my face is a marketing solution and Ads related teams. The big company has a long period and feels that
+recruiter is not very attentive.
+
+Electrical surface:
+Third Brother, but it feels no black.
+1. Use trie to solve for all words in the dictionary that match the given prefix. And then extended to the prefix
+inside wildcard situation, and then continue the discussion if you want to design a system to do this thing how do need
+to pay attention to what issues.
+
+Onsite: I
+didn't even encounter the third brother. In addition to a round of old Chinese and foreigners who are all old white, each round starts with a
+behavior of at least 15 minutes , and everyone can change the pattern to ask different questions and feel most of the brain. these cells are not spent
+on something with, so I feel very uncomfortable.
+1. OOD Restaurant Reservation System
+2. Merge K Sorted List
+3. K Sized Sliding Window Sum/Minimum Value
+4. Give a css file inside a lot of classes, then the class databaseName inside actually a lot of repetition, how to
+compress the string with the smallest possible size to represent, so that the byte transmitted a bit less.
+Shorten URL System Design 5. The
+6. The longest palindromic the substring
+7. The Robot Moving from topleft to bottomRight corner of Matrix A, Matrix there are
+some cell can not pass through an obstacle, can only go down or right, how many ways.
+8. The projects I did before,
+
+compared to the architecture of my previous pit company's architecture , I think the engineering level of linen is quite general, and many design
+principles don't know. Maybe because they use aws internally, they don't have many details. Need to consider, it may also have
+a relationship with my face group, if the face is aws it will be better.
+
+The linen gave me a senior title, but the package was slightly different from the others, so I didn't
+talk about it again .
+
+################################################## ##########################
+###########
+
+WalmartLab:
+My face is the only group of walmartlabs that are not the third brothers.
+The overall difficulty of the interview questions is also good, and the algorithms are basically common topics. The national interviewers are very, very, very nice.
+Just to say a few of them more interesting
+1.topological sort
+2.design web crawler system, how to scale, what would be the bottle neck and
+how to solve the problem
+3. How to use semaphore or condition variable to achieve three process p1, P2, p3, p2 must be
+p1 end to run, p3 must be p2 end to run
+4. bloom filter how to implement, estimated false rate
+5. what is the best design pattern do you think and why
+
+they onsite have a round with the product Manager chat, that is to say. One hour I was racking my brain
+to find the topic, it should be similar to the culture fit it, and see if you are more easily integrated into the team.
+
+Walmartlab was the first company to give me more decent offer, and cash gave a lot, so in fact I'm very grateful
+, and the work life balance of my team is very good. I have seen one of the best ones. Onsite actually has one.
+The two rounds were video because of the interviewer WFH. I usually work very freely, there is no OKR, no deadline (Yes, you
+Not mistakes, no one, performance complete bosses have the final say).
+The reason not to go to walmartlab is that I feel that they really lack an experienced engineer, and many of the things
+they do are experimental and have no obvious business impact. At this stage, I still want to go to a
+place with more thighs .
+
+################################################## ##########################
+###########
+
+Sumo Logic:
+At first saw a lot of MIT companies Graduates, and I heard that they are very tall bars, so I just
+wanted to do a benchmark. They basically all use scala. If you know a little scala, it would be better but you
+don't know how to interview.
+
+Their interview is the first round of the phone, then the two onsite, the first onsite2 round, the second onsite3 round, and the second onsite after
+the first onsite. The second round will be onsite every two interviewers, each face
+interviewer will be the one subject.
+
+Electrical surface:
+1. Two binary trees, each node has two possible values, 1 or 0, and the two trees correspond to node or
+operation.
+It's extremely simple, it took a bit of immutable data structure and then talked for a while before it was done.
+
+Onsite 1:
+1. Talk purely to the project and discuss their existing data ingestion architecture, just as they recently wanted to use Kafka.
+After talking about this topic for an hour, I ended up with no time to finish the question
+. 2. Little Three, but not black.
+Given a list of intervals, query if another interval is completely covered by
+the list of intervals.
+Completely covered means that the entire range has been covered by some existing range.
+For example, if there is a list of intervals = [(1, 4), (2, 8)]
+given interval [3, 6] is completely covered.
+Then extended to design a system to do this thing, can query, insert interval may, false
+set query operation frequency is much larger than insert operation, interval and number of very, very much.
+
+Onsite 2:
+1. interesting topic 1, the design of Bi-directional LRU cache data structure, both lookup
+key to get value, can also lookup value to get key, also supports set (key, value) operation,
+followed by conditions In the case of concurrent, there will be any problems, how to improve, if
+the frequency of the set operation is far less than the frequency of get this operation, you need to write code to achieve.
+2. robot from topleft to bottomright LC topics, accessibility and obstacles
+List of sets A GIVEN 3., Find All the any pair of intersection sets HAVING
+4. 2 interesting topic, caltrain System design, to achieve the deducting money card caltrain get off the entire function
+can, the ASSUME each station related to a central server Connected, to deal with
+how to do if there is network  partition, eventually fare or charge to the account, but can not affect the
+normal operation of the partition station. To deal with some people do not get off the card how to do, followup can be very much
+5. Interesting topic 3, is still designing a timed cache in the cocurrent environment, but some
+differences, if the delete operation is a daemon thread to do not too More considerations, but the
+logic of the get(key) operation is that if the key is not in the cache, it needs a very expensive operation to load the corresponding value
+. How to make the load operation to the same key occur as little as possible, need to write code to achieve.
+
+I find this topic very interesting, engineer are super nice, feeling human capacity I've seen are very
+wrong, very fast response younger, a little older are very experienced. On the whole, there are not many third brothers, although
+engineering vp is the third brother.
+This home is very sincere. In the end, the base given to me is almost the same as walmartlab, plus the option that is difficult to value. They
+feel that their bar is very high, too much can they interview people, so once you've had them interview him to do was
+to prepare non-stop harassment of their recruiter.
+Regarding this company, I mentioned in other posts that although engineering vp is a third brother, but it feels a
+bit more reliable, unlike some third brothers, who have no margins, and
+have a very good prospect for the development of the entire company. Business model is also very good. Hope, recently got an 80M investment.
+
+################################################## ##########################
+###########
+
+Palantir: The
+
+most difficult company to call the Bay Area Interview. But again I was lucky that I didn't have a difficult problem. I think this
+company is a bit overdone. There is no technical content in what we do. There is a group of inexperienced
+stanford young people who feel super good about themselves. Also go to this company to be ready to work 60 hours per week.
+The valuation of 15 billion yuan returned to option I am also drunk, can not be listed? My opinion is that this company is basically a pit,
+from which point of view it is not worth going.
+
+Their onsite will have 3 rounds in the morning and then there will be an hour demo after noon (because it's really
+meaningless so I almost fell asleep). If there is a morning after the afternoon there will be 1 - 2 rounds, usually in the afternoon. There is a
+system design and the other is the hiring manager. If you don't finish the demo in the morning, you can go home.
+
+Electrical surface:
+Electrical surface problem for 10,000 years, give an array, ask whether there is duplicate
+follow up1, as long as the distance of the index <k and the same value even if duplicate
+Follow up2, as long as the index distance <k and the absolute value of the difference <d even if
+discrete follow up3, follow up2 can have time complexity O (n) solution?
+
+Onsite:
+1. Game Astroid OOD, the aircraft is playing a game stones, the stones can be moved in any shape, planes into
+a hung up, the airplane can be fired bullets, stones marked with a bullet into a plurality of small stones will stones
+Move in different directions and speeds. Write pseudocode.
+2. Each person has a list of intervals, represents the period of time busy, and asked the most busy period of time points
+respectively who are busy.
+3. A description is not a simple problem, but the algorithm is not difficult to see in the version but the details can not remember,
+it seems to be a bunch of stock profile and then profit
+4. A 2d matrix, is divided into several areas Between the regions, there is a cell with a value of 0. Each
+non- zero cell connected to a heap is considered to be an area. Which is the largest area to ask, and how to use the json
+return result to design the API  .
+5. system design is a distributed key-value store, the same problem for thousands of years, and later nothing to
+chat with the interviewer to pull their atlas, distributed transaction layer, no way to want to take
+offer or need.
+
+Basically, every interviewer is a very tall man and asks them what they are doing right now.
+I can't say anything about it. Their offer is also not sincere, 150k base + 25k signon +
+55000option, directly refused to talk about it.
+
+################################################## ##########################
+###########
+
+Dropbox:
+
+Dropbox's interview questions are all from the question bank. But the problem is that their question bank is not big. Therefore, I can responsibly
+say that you have found the face to face problem in this edition and you absolutely can meet during the interview process. In addition, they complex algorithms
+law topics are not many, but most are related to issues with concurrency.
+
+The general standard is 2 rounds of electrical surface + 6 rounds of onsite, 6 rounds of onsite actually have 2 rounds of behavior and culture fit.
+
+In addition, the requirements of their interview are to write the run code, to write a complete solution, can not write a The main
+function is finished.
+
+Electric surface:
+1. to pile file, how to compare the effectiveness of identical content file group together, file may be non
+very large
+2 was face countless phone number turn into a string, and then the word break Topics
+
+Onsite:
+1. log_hit(), get_last_5mins_hits() That topic, concurrent How to engage in 2. Token
+bucket, assuming a token is provided every x seconds, then any number of tokens can be applied outside, such as
+If the token is not enough on the block, the required concurrent condition, there can be no special thread to generate token, how to
+use the simplest method to achieve
+3. Web crawler, to analyze the possible bottleneck, and then converted into the concurrent running version, write the
+runnable code.
+4. system desgin that a two-San, bombarded an hour to do all the things I had done
+the whole overturned, so this is not the end of the round I knew definitely hung up.
+
+################################################## ##########################
+###########
+
+Behind these three companies is a feeling during the entire interview process The best three companies.
+
+Uber:
+
+Uber's efficiency is not an ordinary one. I was contacted by Uber from the very beginning and finally got the offer basically within a week
+. After the Uber was finished, I really had a
+lot of emotions . Because people who look at me I think are very niubi, and people are super nice and very happy to provide a lot of information about Uber. The whole atmosphere is very positive. Although the boss is a third brother
+but there is nothing to be able to Tucao, his men are now basically old.
+
+Electrical surface:
+General electrical surface will be the hiring manager, in addition to asking what had been done before but only one topic:
+OOD card deck, to the site deug, need to be able to run the
+electrical surface an hour notice that I can onsite
+
+Onsite:
+onsite is generally 5 Wheel, middle boss with lunch
+5 is a inevitable there are only discussed previously done project, be ready, be sure to do their own before the East
+West especially cooked
+and I asked a lot of the interview process how to design a system to solve practical problems such Uber topic, very very new
+meaning
+1. asked me many questions about the storm, such as how to ensure that storm Once Exact / AT Least Once
+Semantic, how do timed window join, because there is something related to my resume, then let me Storm
+to do a relatively simple sliding window count.
+2. big integer multiplication, requiring on-site code to run.
+3. longest increasing subarray, longest increasing subpath in a tree, path only
+from the root to a Leaf
+4. Boggle Game, A GIVEN A Boggle Board and the Dictionary, the Find All words ON at The
+Board,
+the Follow up, but if dictionay unchanged Board keep changing how to optimize
+follow up, if the board is unchanged but the dictionary keeps changing how to optimize
+5. Given a matrix only containing 1 or 0, find how many rectangles are 4 corners
+are 1
+6. how to design a system to automatically detect hotspot on geo graph, a
+hotspot is an area such that 打车的request远多于available driver的数量
+7. how to design a system to detect if dispatch algorithm has some bug，
+dispatch主要是收集所有打车request和available driver的信息然后决定哪个driver
+哪个客人
+
+Onsite过后两个小时通知我有offer了，如果onsite过后一两天之内没通知的话，基本
+上说明你的waiting list上，要等排在你前面的人据掉offer才可以继续下一步。
+
+############################################################################
+###########
+
+Facebook：
+
+initial round我是直接去onsite的，但是根据其他朋友的经验似乎电面或者onsite影
+响也根本不大，因为第一轮基本只要没有太大的纰漏都会过。
+
+Onsite：
+一共5轮，如果是4级的话会是3轮coding，1轮behavior和1轮system design。因为偏
+infra, 所以我有3轮是三哥，当时已经做好挂的准备了。
+1. move all 0s to right end of the array
+2. decode way
+3. binary tree inorder iterator
+4. determine if there is a subarray sum to target number
+5. convert integer to string，1000 to “one thousand”
+6. system design - design facebook music system，只需要design service tier，
+两个API
+get_top_10_list_music_ids(int64 userid) - return top 10 most frequent
+listened music ids for a given user last week. 这个call在load页面的时候要进
+行，所以对latency要求比较高。
+record(int64 userid, int64 musicid, int64 timestamp) - 每当user听一首歌，就
+需要记录下来，这个可以asynch进行，需要eventually consistent，但不需要每听一
+首歌马上就能反映到上一个call中。要做各种spec和resource的estimation。
+7. 抄dropbox那个问题，get_hits_last_5mins(), record_hit()，但是后面又扯到
+System design, how to thread safe, if it is districuted syste how to do, you can think of several methods
+8. behavior that round basically revolves around the topic, what difficulties you encountered before you solve the problem, how to solve
+, you learned What, what production has had a silly cross bug, how to avoid it. Did you
+have a cross team before doing your project , how do you persuade other teams to listen to you, and so on. Too much talk led to no time at the end.
+All this round without coding.
+
+I thought my luck was good. I didn't encounter any difficult problems again, especially the algorithm.
+
+################################################## ##########################
+###########
+
+Google:
+
+Dogs can still be good if they really want to be fast , I've been contacted by the recruiter since the beginning to offer is also within a week
+.
+The dog family and the F family all felt very good. The interviewer was happy to help, and obviously felt that the level was different from other companies
+. The technical skills were very solid.
+
+Once again, I was lucky that I didn't encounter a very difficult problem. Basically it was water. There are several interesting
+topics:
+1. A positive integer can be expressed as the sum of squares of several other positive integers. For any positive integer, find the fewest
+positive integers. The sum of squares is a given number. For example, 14 = 1^2 + 2^2 + 3^2, if the given number is 14, it should
+return (1,2,3)
+. 2. Give a dictionary, then you can support the query, give a string, and return
+The dictionary contains the shortest string of all characters of a given string.
+3. How to design google login system
+4. How to determine whether two documents are the same/similar when web crawling.
+
+Sorry for the fact that many details can't be remembered, and the ability to express is limited. There is no way to say this clearly in this post. If
+everyone has questions, I will do my best to answer them. Thank you. .
+
+--
+* Modify: * beanbun in Jun 14 02:34:35 2015 Modify this article [FROM: 50.] Sender: beanbun (Beanbag), Area: JobHunting Title: Re: beanbun Daniel, Will you leetcode brush Several times, to what extent, also brush lintc sending station: BBS unnamed space station (Mon Jun 15 02:58:59 2015, the United States) algorithm I basically is two: leetcode and this version of the surface via leetcode I probably Brushed 3 or 4 times, the state of the interview is probably about 3 days . Once I have read this version of the classics and techniques posted for the past six months, I have carefully read them and saved them according to company and type. Useful information is very More, if you can really sum up the basics, it will not be too difficult. So I said this version has helped me a lot. Lintcode I'm not interested in this kind of stuff, I haven't used it. The real big cow interview does not require a brush. I think the brush question needs to be treated correctly. I brush the question because the interview is still had to brush, but the brush can not be used as their main task, the brush can only be decided
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The lower limit of the offer, sometimes even the lower limit can not be determined, but definitely can not determine the offer of the upper limit.
+- Sender: Beanbun (Beanbags), District: JobHunting Title: Preparing for Interview, No Drying Station: BBS Unnamed Space Station (Tue Jun 16 01:41:10 2015, US East) First of all, no dry goods, but skip. Secondly, my experience is not necessarily applicable to all people. It does not mean that I do it right. My working time is not long, so some problems are superficial, the main purpose is to throw bricks, and accidentally code numbers. , the students can have the patience to look at, corrections and suggestions are welcome. ###################################### ### Talk about my background, since many people Interested, but no more details. . North American cs top25 water school ms less than two years ago in a Bay Area third brother donkey (non-L), the version has been guessed out to do something fairly, big data infra ####### ############################### ### Beyond the topic. . I really believe that my asses are more busy than most other companies. I started to slow down. I didn't have the main questions at the beginning. Instead, I listed some of them. must understand that a certain degree of system and framework to learn, I spent about three months to look at some paper,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Opensource project documentation, presentation, source code and engineering blog. Because they
+are all in use at work, they are not very painful, but as far as possible from the design point of view, they will learn more
+things. Many times they ask themselves why others should do this, and then combine their real experiences to gain a lot. This
+period of time is their own investigation of the entire knowledge base Network access is an important time, as long as that is not very understanding of probability
+concept basically have to find out, design a lot of time actually examine your basic skills and knowledge base is not
+solid, there is no knowledge Base is hard to do design.
+
+Later I also devote time to look at the contents with Java concurrency-related, joshua bloch that book ( the Java Concurrency in Practice ) I see it again, then looked again achieve Java concurrent library there are several classic data structures,
+This I think the help to me is very large, a lot of things will become clear before a lot of vague, and understand how
+others are achieved, in fact, can also learn how many times a variety of common optimization is done. Even a lot of
+concurrency design and implementation skills are learned here, such as previously unknown IntAccumulator
+, AtomicIntArray, and then we all know how to achieve a simple blocking queue , but Java's
+LinkedBlockdingQueue is actually more sophisticated, throughput is higher, and then Contacted before
+Disruptor queue to do comparison, summed up now is nothing more than from the earliest compareset busy wait wasted
+cpu to wait condition to save cpu to compareset busy wait wasted cpu but provide better
+throughput. The other is to directly perform volatile reads on the memory to save
+the lock on reads . The new concurrenthashmap uses a lot of these, in fact, also provides a lot of
+important optimization methods when doing the topic of concurrent .
+
+After doing these things, I would like to read Kafka's source code again, but the time is not enough. Although the design
+is generally understood before , but I think hadoop, storm, kafka, Hbase, Cassandra these very
+typical framework is my interview is bound to be very understanding of things, before touching Kafka is not very much, as
+to deliberately again Kafka read the paper and design doc for a moment, then looked at a lot of other companies'
+engineering blog to understand what others are doing, What are the problems?
+
+I haven't done many things related to web services before, so this type of thing still has to look at.
+Thank god, there are a lot of useful information on the version of the big cattle of F, about the
+design of the most classic systems and implementation, with associated F video can be found online, I basically read it again, and I have seen a document
+over, essentially similar problems can be solved with the same principles.
+
+Some students said that design has no experience, and this is not entirely correct. There is no real lack of first-hand experience.
+Information, does not know what issues might arise, but the most common problem does not mean you do not know other ways you can
+track, we improved various systems for the existing systems are based on common issues arise, it may have been done, but not
+Being able to act as an excuse to not do it, it is not a difficult task to understand how others do it. Now most of the common
+systems are generally similar, and some of the most fundamental principles are actually followed by everyone, and the difference is often
+individual optimization for different use cases.
+
+So here I think the more useful preparation method is to make a few preparations before understanding a design.
+
+1. First of all, a process or a system is how to work out, here is that design a
+service requires cpu, Memory, disk, network, etc. Many components coordinate work, when these things are
+used separately, why should these things have, respectively, what are the characteristics.
+I believe we are all familiar with have an article called The numbers eveyone should know, there is no text in this
+design on the basis of the chapter is nonsense.
+
+2. To clear this design is to solve the problem in the end, what is the use case, design a system rooted
+in this sense is to solve a problem exists, this problem will have general requirements, such as Latency
+, such as throughput, such as load, For example, which kind of operation is more frequent, such as whether there is consistency requirement
+, whether it is reactive, whether it is highly available, etc., etc. This is combined with the first point.
+Can understand where bottlenecks may, what things can tradeoff, and then will have a solution design of
+
+3. knowledge base to try to reserve enough operating system, distributed system, concurrency it
+something hard to chew on, I have also had several self-study distributed system open class universities, many students think about
+these short cuts, but the more valuable the more difficult things. The lack of knowledge is not a problem. To add something to it,
+as long as we can stick to it, we can basically have a qualitative change at a certain time.
+
+All the routines are based on these things. Slowly summing them up, you will understand
+what kind of problems can be solved under what circumstances . Many times you don't need to think about new solutions yourself, but it
+'s not easy to use existing solutions for flexibility.
+
+In short, it is to rely on the usual accumulation of basic knowledge to lay + multi-steal other people's things existing + themselves more and more stations are summarized
+in problem-solving angle to think, not just these as interview questions.
+
+In addition, I think that in terms of preparing for a general interview, there are two gods on the plate. The contents of the two gods are quite similar
+, and I have read all the contents of the whole gods. One page is
+
+1. Beidapig Daniel's summary posted ( here )
+2. Is another facebook Daniel's summary of experience within the posted ( here )
+
+I summarize this web service piece basically relies on these two posts inside content, so special thanks to the two
+bits.
+
+These things are actually done intermittently after work, but it took about four months to concentrate
+.
+Then I think I need to start to focus on strengthening algorithms and coding.
+
+######################################
+###
+
+Related Algorithms:
+
+In a previous post After that, LC+ has been used for the past six months.
+
+Excuse me, I'm not very good at organizing things, so basically these things are still in
+a state where I can only understand what is.
+
+But what I want to say here is that the results of the summary are not so important. The process is the most important. If you look at
+the purpose of others to understand these topics or to expect the interview to encounter the original problem, I think the face is Infinite. This
+resource is very rich on a version, in fact, do not need to completely digest can easily get the offer.
+
+Looking at a topic to understand a topic and to be able to merge with similar issues before it is the purpose, in fact, after reading the
+first half of the version of the face is not so difficult, I insisted on this matter for more than a month, every night to see four , Xiao Wuge
+, each post each question, all replies are carefully read, I feel this is a rapid algorithm
+important period of time.
+
+There are many topics in many interviews today that are not biased towards the algorithm but the basic skills of coding. This is no way to
+practice more. The more troublesome the problem is, the more it is necessary to practice. In fact, there are rules that can be followed.
+
+The problems on the board were not met by me. I think that the problem of medium-to-medium-middle level difficulty in LC should be the average level of most interviews
+. It will not necessarily make sense to spend a lot of time on certain problems. It might be better to use basic skills. Better and stronger
+some. If you are asked questions during the interview, the basic explanation is that the interviewer is not very approve of you before the interview and you need to use
+some difficult topics to examine you.
+
+I myself have also had a lot of candidates, so I believe this is a common idea for most interviewers. Actually, the real
+thing is that many times an interviewer wants you to be able to pass. If you don’t want to let you pass, you’ll never go too far. . The interview is not an
+exam. It is 100 points if it is not a question, and there are many questions that do not have a score.
+
+So I said that the brush question is just the most basic part of the interview process. It's just a necessary condition, far from being
+all. If the ability is enough, the brush is not good and we still get the offer. What level we talk to each other? sentence all know that
+road a similar, not everyone likes algorithm face brush title.
+
+######################################
+###
+
+back to truly enter the interview stage, and then In order to keep my mind on the boat, I used all the unused vacation days
+before starting to work full-time.
+
+When the interview my strategy is to practice hand side of the company, and then the intermediate state the best time to face the most wanted company, most
+before the impact of hot preipo little difficult, but found time to interview himself basically not to say
+The plan that was done well before was basically useless.
+
+The last three weeks I have basically no problem too brush up before the master is not particularly good feeling to see the contents, then
+after just west of East poke poke it and see new posts, practice two design topics every day, if You need to keep your hand
+and write a few questions. Before each company onsite, I would also browse the glassdoor for a good idea, not to worry about it
+.
+All onsites are basically in the last two weeks, which is a difficult time.
+
+Regarding others:
+Compared to the time of graduation, there are still some deep feelings in this job search:
+
+1. The resume is very important. Even if you go to a big company like FG, most of the interview results are decided before the real face
+. If the resume also shows that they are very familiar with what they are doing, there is a great markup, so please do To
+brush your resume, be prepared. I have talked several times all things related to resume round of interviews to fool later, interview
+officials generally do not make things difficult.
+
+2. Please look inside to find a job and find a reliable friend to push the target company's recruiter, recruiter most help is very
+busy, so please at the beginning of a little better for them, if they feel that you will try to help you with Me to
+offer . recruiter play a role in the interview can be very large, they help you arrange the interviewer, they can look
+to your feedback, they may even have a better personal relationship help you match a good group, so get in
+before the offer Before the attention was paid, there was no harm in pretending to be a grandson. After taking the offer, the initiative is in your own hands
+. After the overall situation has been set, the status of both parties will be exchanged. In fact, this aspect of negotiate offer is actually one. . . You have a
+compete offer. . .
+
+3. The interview process is a process of continuous learning, a mad and this is why I have to face so many companies
+a reason, because I wanted to know more details of how other companies are doing, so the interview Do not worry about daring
+to ask Many problems are real problems that they have to solve, and they are also problems that you may encounter in the future. If you
+face down 10 companies, these summarized things can already help you get another interview.
+
+4. Another thing that I find very helpful is that there are a group of like-minded friends and the thighs that can guide myself. During the entire
+work process, I feel that I have learned many things from my colleagues. It helps a lot. I have to praise this.
+All the Chinese people under the donkey before me may have been particularly united because of the oppression of the third brother. Usually
+, exchanges of various technical issues are in place. No one will have reservations. Now that I've been basically on the move,
+I'm going to be relatively late. It's generally the earlier the more bullish people go. My final offer is
+a middle level for everyone.
+
+5. Luck is very important. The same person may change the environment completely differently. I asked a big ox
+to ask for a job before . What's the most important thing is: luck. Now I believe this very much. . .
+
+All in all, I am not a cow, I am not a domestic top20 graduation is not North America top20 graduation, my college is not
+learning cs, but I believe that the time before the version of an older generation, then we can come to the United States read a decent degree, said
+Ming There is no problem with everyone's IQ. Many times, the outcome depends only on how strong their determination and perseverance are.
+As long as you are willing to work hard, the result will not be too bad.
+Posted by Bin Mu at 7:27 AM No comments:
+Email This
+BlogThis!
+Share to Twitter
+Share to Facebook
+Share to Pinterest
+
+Labels: interview, system
+Saturday, June 6, 2015
+Sender: beidapig (behaving modestly), Area: JobHunting
+Title: Report F and G's offer, share face-to-face and preparation experience
+Send station: BBS Unnamed Space Station (Sat Jun 6 15:45:14 2015, US East )
+
+Offer:
+=====
+Background: Non-cs PhD+ Two and a half years of experience
+applied for Amazon, FB and G.
+A Rejected: 1st Electro-
+Mechanic Case of the Third Brother, Black F House Offer: ~24w/year + 5w sign on
+g Home Offer: ~25w/year + 3.5w sign on
+Two Offer is very good, very difficult to choose, and finally Go to the dog.
+
+FB is the big brother on the board to help me push in. People are very, very good and very enthusiastic. It's a pity that I didn't go in the end, especially
+thank him very much.
+The G family was pushed by his buddies and helped collect a lot of preparation materials.
+Thankfully, my wife, my father-in-law, and my mother-in-law provided sufficient late protection. To tell the truth, taking care of the baby is much more
+complicated than writing .
+
+
+Surface
+Passage : ====
+A household appliances surface:
+-----------
+     Third Brother, out of 5 questions, all 30 minutes to get, or hacked. There was no experience at the time and
+complaints should be made immediately after the interview . After the result, he complained to the HR without success.
+     1 given 2 strings,can you construct str1 using chars in str2?
+     2 binary tree inorder traversal，both recursively and iteratively
+     3 erase given value item in linked list
+     4 how to debug memory leak in c++?
+     5 design a parking lot.
+
+F家：
+-------
+电面：
+     华人大哥: 一个数组里有多个最大值，等概率随机返回其中一个最大值的index，
+要求one pass。LC 的 permutations
+
+Onsite：
+     1 国人大哥（人很好，放我的水）： merge k sorted lists, best time to buy
+and sell stock。
+     2 印度经理： 背景+behavior+一个编程：code base在某个版本开始有bug，找到
+这个版本。
+     3 老美： LC 的 minimum window substring, decode ways。
+     4 中东人： LC的valid palindrome。 给1， 2， 5面值的纸币，有多少种组合凑
+出100 块钱。
+     5 三哥：设计题，传输10G的data到5个data center，每个data center 有1000的
+node. The third brother began to look for backgrounds from the background. During the interview process, the differential equation of the gossip protocol was solved and was
+hacked.
+     After the interview, immediately complained about the third brother, because all other interviewers gave a strong recommend, so add
+face design questions
+     6. Lao Mei (high-level, Da Niu people): Design the back end of iPhone Find Friends. + Geohashing
+DHT solution of the
+
+interviewer level F home are very high, and you are willing to discuss their project, of course, if you are the right to
+a comment, give you a lot of extra points.
+The design questions are very detailed, such as how to achieve DHT, how to achieve a single Hash table can save memory, how to do
+concurrency control, how to achieve mutex and the like.
+There are good and bad guys in the third brother. There are many bad guys and many good guys. Don't worry about the third brother. In the event that a bad third brother is
+dark, do not influence your mood. Continue to complete the next interview. You are very likely to get an opportunity to add another face.
+
+G:
+--------
+Because the NDA was signed, I will not elaborate. Thanks to a big man from Zhejiang University, he gave a lot of guidance during the interview.
+
+
+Interview preparation:
+========
+F's algorithm:
+----------------
+    1. F's questions are basically the original questions and variants of Leetcode. The study of the leetcode question is OK.
+    2. Talk to F's HR. If you want to get the interviewer's strong recommendation, you need to
+Two questions were completed in the round interview. Each question is completed in 15-17 minutes, including discussing with the interviewer, writing the code, and writing the test
+case. At the same time, try to bug free, not necessarily an optimal solution.
+    3. The time is very tight, so you have to practice whiteboard codes and practice running test cases on the whiteboard. Will write more hair
+now, bug probability to write on the whiteboard with a computer code written much lower than that, because on the whiteboard can be straight through graphically
+view the running test case, it is easy to find bug.
+    4. At the interview, you wear a fine tip marker, which is much faster than writing a thick pen.
+
+G family of algorithm:
+--------------
+    1. G home exam is large, and often get a new title, the interview when I have not seen one, so brush with questions
+at no Big.
+       The G home question is basically a variant of the classic algorithm. If you are very familiar with classical algorithms,
+you can think of solutions quickly when you interview .
+   2. Review the classic algorithm and recommend reading Sedgewick's algorithm book. http://algs4.cs.princeton.edu/home/
+        compared Introduction to Algorithms, I recommend this book, because the book of the algorithm is in Java rather than real pseudo code
+now, but the code written in a very simple and elegant.
+        Prof. Sedgewick's book does not have a specific section on DP. See the algorithm introduction as a supplement.
+    3. G family likes to test all kinds of trees:prefix tree,augmented binary search tree (with
+Rank and select APIs), segment tree, binary index tree (1D and 2D),
+interval tree, kd tree, quad tree.
+    4. The G family likes to test geometric problems, recommend:
+           topcoder tutorial: http://help.topcoder. com / data-science / competing- in-algorithm-challenges / algorithm-tutorials /
+           introduction Sedgwick geometric algorithm (sweep line or the like) of the Video: HTTPS: // WWW.
+youtube.com/watch?v=Igr6yONkpIQ
+    5. the G The questions about AI for designing board games can be solved by using the MinMax algorithm: http://neverstopbuilding.com/minimax
+    6. Both G and F will examine Thread-Safe data structure and Threading Pool.
+++ Concurrency in action Chapters 6 and 9 http://www.manning.com/williams/
+
+System Design:
+     1. I have little experience with web development. Students with the same level of experience as me can take a class first and
+recommend the web development class that Reddit Cofounder runs
+(handouts and course projects are very good): https://www.udacity.com/course/viewer#!/c
+-cs253/
+     2. For students who do not understand the distributed system, we recommend Cloud Computing
+Conception on coursera  : https://www.coursera.org/course/cloudcomputing
+     3. The most important part of system design is Data Storage and Data processing. .
+         Data storage contains:
+              a. Distributed File System: Recommend to look at GFS paper and FB Haystack
+Photo storage
+              b. NoSQL Data storage: Recommend to look at the Big Table paper, to understand the
+Cassandra architecture: Cloud Computing Concept class
+              c. Memcache
+         Data processing:
+              Look at the Map-Reduce paper. Learn what Map-Reduce can solve. Such as
+how to do the job scheduling and so on.
+
+     4. On the board, the big cattle collection question bank: https://www.evernote.com/shard/s21/sh/c2035c38-
+1a80-4fd4-8c93-8ca0ad9ffb48/35079ac1bf5ae3ea
+         most of the questions, when solving questions, follow three steps :
+               a. If the amount of data is small, how to achieve it on a stand-alone machine.
+               b. If large volumes of data, how sharding data, how to achieve Scalability
+               c. Fault Tolerance, consider node failure and message loss when it
+Mody process. Sender: beidapig (behaving modestly), Area: JobHunting Title: Re: Report F and G's offer, share face-to-face and prepare experience Sendmail: BBS Unnamed Space Station (Mon Jun 15 22:05:31 2015, (Middle East) began preparations late last year, more than the end of the year holidays, began to brush leetcode, about two weeks brushed the first time. Then, the next few months, not how to brush LC, spend two hours a day, ready to system design of the main issues, but also on some online classes. In the month before the interview, about four hours a day, two hours to study the algorithm, two hours to practice whiteboard code (LC + face Zhenti), also found a few good friends to do mock interview. My algorithm is stronger than system design. Many algorithms have been read before, so I spend more time on system  design. **** Sender: beidapig (behaving modestly), Area: JobHunting Title: Re: beanbun Daniel how do you answer the design question? Writing Station: BBS Unnamed Space Station (Mon Jun 22 21:29:08 2015, US East)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+It is recommended that Professor chris manning's introduction to information retrieval cover the basic knowledge of
+chapters 19 and 20
+
+http://www-nlp.stanford.edu/IR-book/web
+
+crawler. For example, how do DNS resolution; how to determine two pages
+for duplicate content; how politeness (do not hit a site too frequently); how, high-quality
+short amount of pages (nytimes) crawl interval, long intervals of low quality .
+
+[In HanSolo7 (隼)'s masterpiece mention:]
+: Beanbun Daniel how do you answer the design question? For example, kv design. For example, web crawler
+: design. **** Sender: play96 (play96), District: JobHunting Title: Re: Report several offer delivery stations: BBS Unnamed Space Station (Fri Jun 26 00:41:37 2015, US East) 【 In khing ( ^_^) mentioned in the masterpiece: 】: The idea of ​​design asks cassandra, HDFS, Zookeeper, Kafka, Storm to read documentation. Ranking points in order :) --

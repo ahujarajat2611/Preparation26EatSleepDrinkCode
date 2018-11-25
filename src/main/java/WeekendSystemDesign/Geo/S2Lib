@@ -1,0 +1,82 @@
+
+presentation
+https://docs.google.com/presentation/d/1Hl4KapfAENAOf4gv-pSngKwvS_jwNVHRPZTTDzXXn6Q/view#slide=id.i116
+
+https://www.youtube.com/watch?v=O17zuWYN2UU&t=43s
+
+http://s2geometry.io/resources/s2cell_statistics
+
+S2:- Mathematcical
+Google outsourced it
+Use it in production :- Uber, Foursquare
+
+Hard to find :- How it does work !!
+
+How we define :- (Spatial Indexing) :- How it is constructed
+Take shpere and put cube around it and any point on spehere would have
+correspoonding point on cube
+
+ANY POINT OF SPEHERE WILL POINT ON CUBE (KEEP TRACING OUT)
+
+
+HOW TO MAKE REGULAR GRID ON SPEHRE
+
+:----- pixel on cube (projecct back on cube)
+close to diagonal of box close to equator
+
+S2cell is one of pixels :-
+Sphere :- projjt :- 6 pixels of cube
+quadd tree kind of construction sub divide each side of cube into 4 and subdivide
+each of thsoe into 4 and make a tree structure
+
+Then clever way of index this tree and use it
+
+indexing using 64 bit unsigned integer (fast to use )
+
+first three bit identify the cube size (0 to 5 ) 3 bit to do that
+
+one of those sides divide into 4 ( 4 new pixels andd need 2 bit to represent that)
+subdivide again u need 2 bits and keep doing that until you run out 64 bit int
+
+that level is 30
+
+spent 3 of them in the begininning and then 2 2 2 2--upto 30 level
+u end up using 63 bits then last bit 1 control bit (1)
+
+
+
+64 bit gets used
+
+which order 0 1 2 3
+
+Now S2 covering of polygons and then build index map of those coverinsg at
+particular level
+
+Using 64 bit u get more and more precise loctaion
+u stop somewhere when you are down to meter precision
+(in geo service we thot of keeping it around 1/2 km precision )
+
+level 0 each cell contains 85 million sq kms
+level 1 each cell covers 1/4 of that
+level 30 each cell covers one halff and 1 ssq cm area
+(level 30 less than a cm square)
+64 bit int can index every cm suqre on earth
+
+(Use a spartial indexing )
+
+:- Make database and put indexing into database
+take world cities map and
+43k cities and just record unique identifier
+and make hashtable where key is unieue identifier at all level
+and value indices identifier of cities
+
+covering any geomertic shape on earth on ur shpere
+cover these with s2 cells runs though that shape and find resaonal fast covering
+of levels
+
+
+A circle .. covered by cells
+
+We can also use complex polygons (Australia )
+
+

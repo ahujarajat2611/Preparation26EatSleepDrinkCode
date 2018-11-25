@@ -1,0 +1,41 @@
+Warning: The below answer is a bit oversimplified,
+for pedagogical purposes.
+ Picking a storage solution for your application is a
+ very complex issue, and every case will be different -
+ this is only meant to give an overview of the main r
+ eason why people go NoSQL.
+
+There are several possible reasons that companies go NoSQL,
+ but the most common scenario is probably when one database server
+  is no longer enough to handle your load.
+   noSQL solutions are much more suited to distribute
+    load over shitloads of database servers.
+
+
+This is because relational databases
+ traditionally deal with load balancing by replication.
+  That means that you have multiple slave databases
+   that watches a master database for changes and
+   replicate them to themselves.
+    Reads are made from the slaves,
+    and writes are made to the master.
+     This works to a certain level, but it has the annoying side-effect
+     that the slaves will always lag slightly behind,
+      so there is a delay between the time of writing and
+      the time that the object is available for reading,
+      which is complex and error-prone to handle in your
+      application. Also, the single master eventually
+      becomes a bottleneck no matter how powerful it is.
+      Plus, it's a single point of failure.
+
+
+NoSQL generally deals with this problem by sharding.
+ Overly simplified it means that users with userid 1-1000000
+ is on server A, and users with userid 1000001-2000000
+ is on server B and so on. This solves the problems that
+  relational replication has, but the drawback is that
+   features such as aggregate queries (SUM, AVG etc)
+    and traditional transactions are sacrificed.
+
+http://highscalability.com/blog/2010/12/6/what-the-heck-are-you-actually-using-nosql-for.html
+

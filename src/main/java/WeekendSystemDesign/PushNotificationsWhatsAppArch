@@ -1,0 +1,39 @@
+Well if I have to implement something on the similar lines as WhatsApp. I will use the Push Messaging system provided by the Mobile OS frameworks.
+So, whenever A sends a message to B on WhatsApp, the server will store those messages with their unique message ids. Then the server will send those message ids to the WhatsApp client via Push Notification. On receiving the push notification, the app picks out all the message ids from it and then polls the server to retrieve the messages. As soon as the messages are delivered, the server deletes those messages on its end.
+
+Pushing the messages via push notification can be prevented in case the user is online, i.e. the app is running on the foreground. This is a simple check which can be performed using the Android Activity lifecycles.
+Although, personally I would prefer the push notification based system even if the app is online, because the net connections may be lost during the use of the mobile phone. Push notification helps us avoid the headache of handling network connection problems and re-establishing connections.
+
+Never built it myself but this is what comes to my mind when I see WhatsApp and think of how it might be working. Although a bit off from the question, but it can also act as a reference for somebody trying to build something on the similar lines.. :)
+
+
+
+
+
+Whatsapp may or may not be using XMPP protocol However it can come up with something which is similar to XMPP.Coming to your question how communication takes place in a messaging app here are somepoints which can be considered.
+
+1.Every user which is logged in to the client makes a socket connection with the server.
+
+2.The user and server perform a handshake at the beginning to decide the SSL level encryption.
+
+3. A socket connection which is never closed is necessary as it is not advisable to use get request continuously.
+
+4.Once a socket connection is built the socket is never closed until the application is killed or internet connection is lost.
+
+5.Every incoming or outgoing data at the client is send or received at the client is pushed to the socker.
+
+6.The client has registered for certain events at socket.
+
+7.The client may get data in any form depending on the design.
+
+8.You can use custom libraries to parse data if your webservices are not sending data in JSON or XML format.
+
+9.Any data obtained is parsed
+
+10.Depending on the obtained data client can differentiate between the user to which messages are sent.
+
+11.You can build a system where every user is assigned unique user id.
+
+12.Maybe for groups you can use the same logic
+
+13.Then u can saved the data in your DB and notify the user

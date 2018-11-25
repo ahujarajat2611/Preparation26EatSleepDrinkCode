@@ -1,0 +1,515 @@
+8 lakh :- 4 years :- 21,458 ( 2,30)
+10 lakh :- 4 years :- 26,575 (2.76)
+6 lakh :- 4 years :- 16094 ( 1.73)
+6 lk :- 3 year s:- 20,213( 1.28)
+
+NUmber :- 022 40787635 ( prateek )
+
+
+When we look at query users run in production cluster
+A good chunk of them doing join and there are three main joins
+
+BroadCast JOin :- IN this join we are joining two tables  . One of the tables small enough to fit in the memory of the executors so spark will ship all tables to memory of all execuotors and it caches this table and other relation is stramed and join is done  shuffle sorting not happeniig here
+
+
+Shuffle hash join :-BOth tables are shuffle and on reduce side when shuffle output is gathered one of the tables buffered into the memory and the other relation is streamed and join is done
+
+lASTLY SORT MERGE JOIN THIS IS USED WHEN UR TABLES ARE LARGE IN SIZE SO THAT DATA HAS TO BE SHUFFLED AND ON THE REDUCE SIDE IT HAS TO BE SORTED AND JOIN IS PERFORMED
+
+MOST OF OUR TABLES ARE LARGE IN SIZE AND MOST OF THE JOINS ARE LARGE IN SIZES
+
+LETS LOOK AT SORT MERGE JOIN
+
+mapper are reading the input tables and shuffling the whole data . reducers side data is soretd and finally join is done
+exchange is operator responsible for shuffle
+
+right hand size reading the shuffle
+wholestagecodegen sorting the data and then sort merge join is done .
+
+we care abt performance .
+
+1)reading
+2)shuffle
+3)sorting
+4)join
+
+Shuffle is quite expensive
+
+
+Table a and table b
+
+MAP PHASE INPUT TABLES ARE READ AND SHUFFLED OUTPUT WRITTEN TO THE DISK . THIS IS DISK WRITE
+LATER WHEN REDUCER TRYING TO FETCH DATA . IT HAS TO READ FROM THE DISK AND TRIGGERS DISK IO OPERATION SINCE ITS DISK READ
+DISK IO OPERATIONS ARE EXPENSIVE
+APART FROM DISK IO , NETWORK IO IS BAD AS WELL IF THERE ARE M MAPPERS AND R REDUCERS THEN M * R NETOWORK CONNECTIONS
+SO DISK IO/NETWORK IO and io is bad
+
+so how do we avoid shuffle
+
+
+
+
+
+
+
+
+at high level thats how queries look like at production
+reading data join and finally we write
+
+
+Same table read again map side being shuffled reduce side suffle being read and then finally doing sorting to the join
+
+again and again same table we are shuffling so why not bucketize on the same key on which it is being joined
+precompute this shuffle and store this and thats why buketing is . It allows pre shuffle and sort the input based on some keys
+
+bucketing is pre shuffle and sort inputs in keys so that we
+bucketing allows
+
+
+Things look like bucketing :- SIngle stage job
+switch to thr world of bucketing , then jobs are running as single stages :-
+
+
+Preshuffle and sort the data once so that any downstream pipelines do not need to shuffle and they run very fast
+
+Savings :- CPU
+
+so when to use bucketing
+
+tables used frequently in joins with same key UsersAttribute User key
+it was launched spark 2.0
+Users can create bucketedd tables in 2 ways  using dataframes API
+dataframe.write .bucketby(cols).sortby
+other way sql statamen :- clusterby
+
+
+physical plan :-
+table scan exchange sort sort merge join
+we need to tell sql planner that tables are bucketed we need to tell this information to sql planner that data is partitioned ..
+
+AFter the fix query runs as single stage job there is no more shuffle
+
+MIgration workload from hive to spark
+we ran across tables which were bucketed it happened that whwn we ran qurey in spark and hive the output created was different for migration , we have to ensure that complete backward compatibiltiy
+there is semantics difference that how hive and spark bucketing behaves
+
+tables look like n buckets there will be n distinct files and each file will represent a single bucket
+in spark if we have n buckets it can have more files than n
+
+in hive if table has to be popluated it has to be map reduce job if table has n buckets then hive will ensure that it creates n reducers so each reducer will get the rows
+
+spark creates bucket tables it creates without reducer so this is quite fast , means you are shuflling the data around
+every single mapper can get rows for any bucket if spark mapper sees if this rows corresponds to bucket i , j it will create directories and files accordingly
+
+MOdel of hive :-
+distribution of shulles are different across the engines
+
+Same semantics of hive in spark This work is going on as per now . so now hive's hashing function is being introduced in spark
+HIve bucketing information needs to be propated to sql planner ..
+
+
+Lets have one analogy before i present actual soution
+
+if i give u merge sort problem
+
+analogy :-
+
+3 4 -6 5 -7 8 -11 10
+
+3 4 5 6 7 8 10 11
+
+Lets say i have  one userid USERID1
+
+threee feeds :- User netsted activity Feeds ( 6TB)
+User Core Atrribute Feed 500GB
+User APp Download feed 500GB
+evaluates users against predefined business logic
+
+
+Data  mentioned above is User partitioned
+Hashing function (new Text(UserID) &INTEGER.MAX) % 10000  Mapper
+(new Text(UserID) &INTEGER.MAX) % 200 Reducer
+(new Text(UserID) &INTEGER.MAX) % 200 Reducer
+
+
+This is almost 80% of the total job time
+
+can  we reduce the shuffle/sort time by using the knowledge that network activity feed is already bucketed
+
+we can make use of this information smartly to join instead of joining complete dataset that cause a lot of shuffle write
+
+We can create HIve tables on top of pgs data and partitioned the data based on User Id and then perform the join or we could have writte map reduce job to do bucket to bucket join
+
+
+Map side join
+
+This gist details how to inner join two large datasets on the map-side, leveraging the join capability
+in mapreduce.  Such a join makes sense if both input datasets are too large to qualify for distribution
+through distributedcache, and can be implemented if both input datasets can be joined by the join key
+and both input datasets are sorted in the same order, by the join key.
+
+- the input format must be set to CompositeInputFormat.class, and
+
+Sort merge join on two datasets on the file system that have already been partitioned the same with the same number of partitions and sorted within each partition, and we don't need to sort it again while join with the sorted/partitioned keys
+
+
+This functionality exists in
+
+    Hive (hive.optimize.bucketmapjoin.sortedmerge)
+    Pig (USING 'merge')
+    MapReduce (CompositeInputFormat)
+
+
+
+dataset A and dataset B are both partitioned/sorted the same on disk and need to be joined. should be able to take advantage of their partitioning/sort
+
+ I have benchmarked that Hive did well in such map-side join, and Spark should support that as well.
+
+ understand what shuffle is :-
+ we have to get same userids to same machine that triggers shuffle of large volume
+ shuffle occurs to transfer the data with the same key to the same worker node
+
+
+HIve joins
+ spark.sql.autoBroadCastjointhreshold
+
+ set hive.auto.convert.join=true; to perform Map side join
+
+
+ Sort-Merge-Bucket (SMB) Map Join:
+
+It is another Hive join optimization technique where all the tables need to be bucketed and sorted. In this case joins are very efficient because they require a simple merge of the presorted tables.
+
+ set hive.enforce.bucketing=true;
+  set hive.enforce.sorting=true;
+
+RDD
+  partitioned across nodes in your cluster that can be operated in parallel with a low-level API
+generate an optimized logical and physical query plan
+The DataFrame API introduces the concept of a schema to describe the data.
+allowing Spark to manage the schema and only pass data between nodes, in a much more efficient way than using Java serialization. There are also advantages when performing computations in a single process as Spark can serialize the data into off-heap storage in a binary format and then perform many transformations directly on this off-heap memory, avoiding the garbage-collection costs associated with constructing individual objects for each row in the data set
+
+Spark has built-in encoders which are very advanced in that they generate byte code to interact with off-heap data and provide on-demand access to individual attributes without having to de-serialize an entire object.
+
+compile-time type-safety IN DATASET
+
+ 1. Custom Memory management  (aka Project Tungsten)
+Data is stored in off-heap memory in binary format. This saves a lot of memory space. Also there is no Garbage Collection overhead involved. By knowing the schema of data in advance and storing efficiently in binary format, expensive java Serialization is also avoided.
+2. Optimized Execution Plans        (aka Catalyst Optimizer)
+Query plans are created for execution using Spark catalyst optimiser. After an optimised execution plan is prepared going through some steps, the final execution happens internally on RDDs only but thats completely hidden from the users.
+
+ -How dataset scores over Dataframe is an additional feature it has: Encoders .
+
+  -Encoders act as interface between JVM objects and off-heap custom memory binary format data.
+-Encoders generate byte code to interact with off-heap data and provide on-demand access to individual attributes without having to de-serialize an entire object.
+
+Important point  to remember is that both Dataset and DataFrame internally does final execution on RDD objects only but the difference is users do not write code to create the RDD collections and have no control as such over RDDs.  RDDs are created in the execution plan as last stage after deciding and going through all the optimizations (see Execution Plan Diagram).
+
+
+RDD let us decide HOW we want to do where as Dataframe/Dataset lets us decide WHAT we want to do.
+
+
+Resilient distributed datasets
+
+orignally exposed RDD COMPILE TIME TYPE SAFE
+LAZY . based on scala collections API .. leterally built around scala collections
+
+they cant be optinized by spark ( ) like we have done filter opetaration before any reduceby key function it wont be able to undestand
+
+First Optimization move away from RDDS ..
+
+it leads to Data Frame APi .. A lil bit closer to what we are trying to do rather than how are trying to do . optimized by spark
+it builds a query plan
+it can be viewed as
+loading an RDD converting to Data frame
+Characterstics of dataframe is that they have schema . we can view as column and column has names and types .
+
+
+query logical plan ->optimizer optimized logical plan and then prepare plan to
+Array[rows] is we call collect on dataframe apis compile types safety
+
+Datasets extensions of dataframe apis . we create query through sql context .. similar to Rdds (compile type safety )
+
+Custom memroy managemeng:- offheap memory . columan based storage . in rdds everything is stored as java object . How it stores it needs to know something abt ur data .
+
+Datasets and meomory :-
+
+1) use less memory becase spark builds these encoders to transalate in memoory objects to offheap object
+spark seiliazes a lot and  using encoders it is much faster
+
+Bucket join
+ Join is done in Mapper only. The mapper processing bucket 1 for table A will only fetch bucket 1 of table B.
+ Bucketed using the join columns.
+
+  1. Shuffle Join(Common Join).
+How:
+The shuffle join is the default option and it includes a map stage and a reduce stage.
+
+    Mapper:  reads the tables and output the join key-value pairs into an intermediate file.
+    Shuffle:   these pairs are sorts and merged.
+    Reducer: gets the sorted data and does the join.
+
+ Most resource intensive since shuffle is an expensive operation.
+
+  2. Map Join(Broardcast Join)
+   Small table(dimension table) joins big table(fact table). It is very fast since it saves shuffle and reduce stage.
+
+    Cons:
+It requires at least one table is small enough.
+Right/Full outer join don't work.
+
+
+
+3. Bucket Map Join
+How:
+Join is done in Mapper only. The mapper processing bucket 1 for table A will only fetch bucket 1 of table B.
+
+
+ Use case:
+When all tables are:
+
+    Large.
+    Bucketed using the join columns.
+    The number of buckets in one table is a multiple of the number of buckets in the other table.
+    Not sorted.
+
+
+    Advance sql catalyst optimizer
+
+
+
+    JOin strategies in hive
+
+    Join the most used operation
+    COmmon join works :- It works for most of the use case
+
+    Mapper read tables from table x and table y and mappers wil read data frmo table x and emit join key and join value and other mappers also do the same and then shuffle sort phase and then put into reducer reducer then does then join
+    very expensive to do shuffle
+
+    BUcket Map join
+
+    Total table size is big
+    will save a lot on CPU ..
+
+
+    there table consist of many partitions , we also have notions of buckets , buckets are simple hash distribution of userid if you are doing join of two tables you dont have to join tables completely if number of buckets happen to be multiple of each other, you can join differenly and then just union all the result
+    bucket columns has to be same as join column
+    This is fairly common scenario for big tables
+    JOing 3 tables a b c
+
+    And a has two buckets , b has two buckets and c has one bucket
+
+    Join is same as bucket1 of a, bucket1 of b and table of c
+    Join is same as bucket2 of a, bucket2 of b and table of c
+
+    a can be large table, b can be lasrge table but if you join using buckets then finally take union , we will get result
+
+    Now there is way to in hive to tell that yes we want to do bucket join
+
+    If data is sorted, we can just do the sequentionl  scan to do join if tables are sorted
+    Sort merge buket join
+
+
+
+df.join(df2, Seq("key"), "inner")
+but Spark generate the “Spark plan” with different strategies behind
+
+SortMergeJoin is standard plan for join operation by keys
+
+If your joined dataset is small
+spark.sql.autoBroadcastJoinThreshold, default value 10M), Spark will choice BroadcastHashJoin, and ShuffledHashJoin (much less occasionally)
+
+
+SortMergeJoin has two sub branches here, corresponds the two dataset df and df1, the both branch need do Sort, Exchange and Scan plan before the final merge.
+
+
+Exchange plan is for shuffle the data, and Scan plan is for project your dataset with required columns to unsafe row.
+we only need move forward the iterator to explore the whole dataset
+Sort (SortExec class) plan perform a sorting on the data.
+Exchange (ShuffleExchange class) plan is actually using a HashPartitioning
+
+Spark Catalyst interpret a simple query to some SparkPlan steps which can be executed directly in the Spark computation engine. It’s clear that, compared to old rdd fashion, the improvement of performance is huge with Catalyst.
+
+
+If an RDD has too many partitions, then task scheduling may take more time than the actual execution time. To the contrary, having too less partitions is also not beneficial as some of the worker nodes could just be sitting idle resulting in less concurrency.
+This could lead to improper resource utilization and data skewing i.e. data might be skewed on a single partition and a worker node might be doing more than other worker nodes. Thus, there is always a trade off when it comes to deciding on the number of partitions.
+
+
+
+partitions = nextPrimeNumberAbove( K*(--num-executors * --executor-cores ) )
+
+When the number of partitions is between 100 and 10K partitions based on the size of the cluster and data, the lower and upper bound should be determined.
+
+    The lower bound for spark partitions is determined by 2 X number of cores in the cluster available to application.
+    Determining the upper bound for partitions in Spark, the task should take 100+ ms time to execute. If it takes less time, then the partitioned data might be too small or the application might be spending extra time in scheduling tasks.
+
+
+    If an RDD has too many partitions, then task scheduling may take more time than the actual execution time. To the contrary, having too less partitions is also not beneficial as some of the worker nodes could just be sitting idle resulting in less concurrency. This could lead to improper resource utilization and data skewing i.e. data might be skewed on a single partition and a worker node might be doing more than other worker nodes. Thus, there is always a trade off when it comes to deciding on the number of partitions.
+
+
+
+
+random IO :- bottle neck does nt from network , disk througput, randomi disk io
+that is numbe rof small file readiding/writting to disk IO ...
+
+
+less, hash based join . to fit each partition into memory
+
+data grew, we thot of moving our strategy  ... we  had to reduce the number of shuffle files ..
+
+two ways planning we can reducde shuffle files .....
+
+reduce partition
+from 80,000 to 1600 ( )
+
+ The lower bound for spark partitions is determined by 2 X number of cores in the cluster available to application.
+    Determining the upper bound for partitions in Spark, the task should take 100+ ms time to execute. If it takes less time, then the partitioned data might be too small or the application might be spending extra time in scheduling tasks.
+
+changing to bucket join
+
+changing RDD to dataset
+
+
+    moved away from RDD to dataframe /dataset ... there different optmizatoon
+   ..
+
+
+SOrt Strategy Bucket join
+solurions bucket join ... SPark, HIve BUcking ,
+
+
+
+doing parallelism + join in parallel .. also
+
+
+
+number of disk seeks and system calls made in creating intermediate shuffle files.
+
+
+4 3  6 5  7 8  9 10  12 11
+
+
+
+2) If both datasets have already been previously partitioned/sorted the
+same and stored on the file system (e.g. in a previous job), is there a way
+to tell Spark this so that it won't want to do a "hashpartitioning" on
+them? It looks like Spark just considers datasets that have been just read
+from the the file system to have UnknownPartitioning. In the example below,
+I try to join a dataframe to itself, and it still wants to hash
+repartition.
+
+amount of random IO
+
+REALY PRBLEM COMES FROM
+
+In atom job, 70% time used to take for shuffle. This is definately a problem. But what is wrong with shuffle? When we started investigating further, we are able to identify the real problem of shuffle. Its random I/O on Disk. In case of spark jobs, random I/O is function of (number of input files * number of join partitions). Network activity feed has 10000 partitions and we used 80000 partitions for join. So random IO cost was F(80000 * 10000)
+
+We started working to reduce the number of join partitions.
+
+Step1: Moving to SortMerge Join and reduced the number of partitions to 15000. So random IO cost was F(2500 * 10000)
+Step2: Bucket join: talk about bucket join. And finally say, with bucket join, now the cost of random IO is F(75 * 200 * 50) ""
+
+Shuffle is function of random io that happens on disk ... if we have 50 mappers producing deivding data in 79 partitions . so shuffle time will be order of function ( 50 * 79 )* 200 where as in previous case it was 15000 * 10,000
+
+20 jobs :- 1500 1 job with 15,000
+
+http://hadoopmania.blogspot.in/2015/12/sparks-new-memory-manager-unified.html
+
+
+
+ We should reduce number of partitions so that after data can be loaded into memory to perform tasks
+ 25,000/300 ~ 79 partitions total number of cores we have around  750 :- 79 * 20 = 1600 2-3 times
+
+  pre-hash-partitioned data and exploit that in join optimizations to avoid shuffle
+  Using a non-prime value makes the likelihood of collisions much higher when the hash function
+
+  1) Storage Memory Fraction: This fraction hold the partitions of the RDDs being processed. It acts as an in-memory LRU cache for the data. It means data doesn't remain in-memory for long and in case of storage fraction being full for incoming data, the oldest data is dropped.
+
+  Shuffle Memory Fraction: When a dataset is aggregated/reduced by a key, all of its RDDs are shuffled to create a sorted dataset. This sorting needs some memory/buffer to keep sorted chunks of data. The amount of memory used depends on algorithm being used. This memory buffer used during sorting in shuffle phase is called shuffle memory fraction.
+
+
+    spark.memory.fraction expresses the size of M as a fraction of the (JVM heap space - 300MB) (default 0.6). The rest of the space (40%) is reserved for user data structures, internal metadata in Spark, and safeguarding against OOM errors in the case of sparse and unusually large records.
+    spark.memory.storageFraction expresses the size of R as a fraction of M (default 0.5). R is the storage space within M where cached blocks immune to being evicted by execution.
+
+task size = jvm heap size * memoryfractionforshuffle ( 0.6 *0.5)
+To make two records can join together, first of all need to have the same key records in the same partition, so usually need to do a shuffle
+
+based on the key to do shuffle Write, will be able to join the record together into the same partition, so that the shuffle read phase can be two tables with the same key records pulled to the same partition processing
+
+This is not we worry, spark sql automatically help us to complete, when the buildIter
+estimated size does not exceed the parameter spark.sql.autoBroadcastJoinThreshold
+ Open the attempt to use the hash join switch, spark.sql.join.preferSortMergeJoin=false
+
+ he average size of each partition does not exceed the value set by spark.sql.autoBroadcastJoinThreshold , that is, the shuffle read phase Each partition from the buildIter record can be put into memory
+
+ To make two records can join together, first of all need to have the same key records in the same partition, so usually need to do a shuffle, map phase According to join conditions to determine the key of each record, based on the key to do shuffle Write, will be able to join the record together into the same partition, so that the shuffle read phase can be two tables with the same key records pulled to the same partition processing
+
+     Number of Tasks on per stage basis = Number of partitions
+
+     Upper bound – task should take 100+ ms time to execute.If it is taking less time than your partitioned data is too small and your application might be spending more time in scheduling the tasks.
+     numPartitions = numWorkerNodes * numCpuCoresPerWorker
+
+
+    Task scheduling may take more time than actual execution time.
+
+ performance of Spark jobs is to change the partitioning of our data.
+
+ work load was not well balanced across the tasks.
+ The second version had to do some extra work to repartition the data, but that modification reduced the overall time because it allowed us to use our resources more efficiently.
+
+
+ cost (broadcast hash join) <cost (shuffle hash join) <cost (sort merge join)
+
+
+ COmmon join :- MR job
+
+ Reduce task will get same join key and perform join:-
+
+ This is the Join set and i am sure that user ids will not spill over in other buckets .. and i need to perform join in small buckets ..
+ The cost of these queries is directly proportional to the amount of data that needs to be scanned
+
+ More partitions means more number of tasks :- And each reduce task will fetch data from all the mappers to gather the data of a particular partition
+
+ Shuffle both the datasets by output key
+
+ There exist techinique
+ Hash Distributions of userid
+ Here the idea is that if you are doing join of two tables , you dont have to join the two tables completeley if ( data is hash partitions ) and number of partitions happen to be multiple of each other you can join the buckets and union all the result . hash partition column has to be same ... and number of partitions has to be  muliple of each other
+ This is fairly commmon scenariois for big table . lets say you are joining 3 tables
+ a has two partitions b has two buckets
+ Essiantly join is same as saying join 50 partitions of first feed , 1 partitions of second feed and 1 partition of third feed and similarly
+ The advantage is that
+ User Dimension data , that does nt change a lot
+ previously we used to scrape all the data and perform join that is expensive operation
+ devided the data into 200 buckets each bucket join
+
+ We have provided apis that will do bucketed join
+
+ Only matching files and being joined and later we are taking union
+
+ if data is sorted, join is simpler you just scan forget the bucketing part if you just think abt looping two pointers sequentinally and performing join
+
+
+If we dig in deeper, we could determine the relations that if a userid is coming in one of the part files, what are the other part files in other feed where this user id would have come ....since these buckets happen to be multiple of each other .....
+
+
+
+Shuffle read and write is just basiclally a function of small small shuffle files mappers has produced for each partition ....
+
+SHuffle read and write depends on number of partitions .
+if there are more number of partitions then shuffle read/write overhead will be more .. since it
+
+if there are more number of partitions, then mapper overhead to do shuffle write will be more since it has to create shuffle
+
+
+We have to reduce number of partitions size during shuffle so that
+
+https://medium.com/@wx.london.cun/simple-queries-in-spark-catalyst-optimisation-2-join-and-aggregation-c03f07a1dda8
+http://sharkdtu.com/posts/spark-sql-join.html
+https://techmagie.wordpress.com/2015/12/19/understanding-spark-partitioning/
+http://www.riveriq.com/2017/01/spark-performance-tuning.html
+http://horicky.blogspot.in/2015/02/big-data-processing-in-spark.html
+https://0x0fff.com/spark-architecture-shuffle/
+http://sharkdtu.com/posts/spark-shuffle.html
+https://www.slideshare.net/akirillov/spark-workshop-internals-architecture-and-coding-59035491
+http://why-not-learn-something.blogspot.in/2016/07/apache-spark-rdd-vs-dataframe-vs-dataset.html

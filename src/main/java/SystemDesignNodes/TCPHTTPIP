@@ -1,0 +1,74 @@
+TCP/IP is a big chapter and one that can't be analyzed in a
+few paragraphs. To help you get the big picture,
+we'll keep things simple and focus on the details you need,
+ to ensure you get a proper understanding.
+
+The term "TCP/IP" stands for Transmission Control Protocol /
+ Internet Protocol and refers to a number of protocols.
+ The "IP" part of the term, which stands for Internet Protocol
+ , is used by TCP and UDP, to transport them from one
+  network to another. Think of IP as a sort of high-way
+  that allows other protocols to get on and f
+  ind their way to other computers.
+  TCP and UDP are the "trucks" on the highway,
+   and the "load" they are carrying are protocols such as HTTP,
+    File Transfer Protocol (FTP) and more.
+
+
+
+    IP :- KAHA JANA HIA ( ROAD RAASTA)
+    TCP :- TRUCKS ( JO SAAMAA LE KE JAATE HAI ) USUALLY IN BYTES
+    HTTP :- JIS SAAMAAN KO LE KE JAATE HAI
+
+
+As you can understand, TCP and UDP are
+ transport protocols used by protocols
+ such as FTP, HTTP, and SMTP. While both TCP and UDP are used to transport
+  other protocols, they have one significant difference;
+   TCP offers guaranteed data transportation,
+   whereas UDP doesn't. What this means is that TCP has a special mechanism that ensures data is safely transferred without errors from one point to another, whereas UDP doesn't provide any such insurance.
+
+HTTP (HyperText Transfer Protocol) is a protocol that utilizes TCP
+ to transfer its information between computers
+ (usually Web servers and clients). The client makes an
+ HTTP request to the Web server using a Web browser,
+  and the Web server sends the requested information (website) to the client.
+
+Remember, IP is required to connect all networks;
+ TCP is a mechanism that allows us to transfer data safely;
+ and HTTP, which utilizes TCP to transfer its data,
+ is a specific protocol used by Web servers and clients.
+
+There's a detailed analysis on the protocols,
+ including lots of diagrams to help the understanding
+ process become as easy as possible, on my website:
+
+
+thrift
+http://thatguyfromthisworld.blogspot.in/2015/07/lets-understand-apache-thrift.html
+https://acadgild.com/blog/getting-started-apache-thrift/
+
+
+The problem is that passing a
+token back in every method just make the APIs a bit awkward.
+ This is somewhat similiar to the vSphere API method where
+ the first parameter is always “_this”. Usage wise,
+  there is no problem at all. Because the problem is similar the one vijava API solves, you also copy the design I had to hide the token for higher level and cleaner APIs.
+
+
+Another approach is to insert another layer,
+for example, HTTP, below the typical Thrift layer,
+ just to take care of the user authentication.
+ For every Thrift message, it’s wrapped in a HTTP message as HTTP body.
+  The HTTP headers can have special headers for
+  different HTTP authentication,
+  for example, the BASIC authentication
+  . If the authentication is successful,
+  the Thrift message is passed along; otherwise it’s blocked.
+  In this case, the upper level Thrift service
+  interfaces do not need to change at all, making it an ideal solution.
+
+Of course, every approach has its pros and cons.
+ For the thrift over Http approach,
+
+  the clean interfaces are its biggest pros. However, it does introduce a bit more traffic than the pure binary approach as introduced above. In most of the cases, the traiffic overhead is not a big deal given the broader bandwith these days. Making the APIs cleaners to use and therefore resulting in higher productivity is far more important than a bit traffic overhead.

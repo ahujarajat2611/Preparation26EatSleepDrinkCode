@@ -1,0 +1,51 @@
+Google Cloud Platform can rapidly
+provision and scale virtual infrastructure
+on which to build web and enterprise applications.
+ Recently, Google and Pivotal engineers
+ collaborated on a performance study
+ of RabbitMQ running on Google Compute Engine
+ . The RabbitMQ message broker was deployed
+ atop Google Compute Engine where
+ it demonstrated the ability
+ to receive and deliver more than one
+ million messages per second
+ (a sustained combined ingress/egress of over two million messages per second).
+
+To put this volume in context,
+one million messages per second
+translates to 86 billion messages per day. U.S. text messages reached 6 billion per day in 2012. Apple processes about 40 billion iMessages per day, and WhatsApp recently hit a new daily record in December when it sent 20 billion daily messages.
+
+The joint RabbitMQ on
+Google Compute Engine performance
+ test demonstrates how one of the
+ world’s most widely adopted,
+  open source message brokers can sustain
+  a combined ingress/egress of over two million messages per second—a volume comparatively greater than the combined set of all U.S. text, Apple iMessages, and WhatsApp messages per day.
+
+Technology Overview
+
+Google Cloud Platform allows developers and IT operations teams to rapidly provision and scale virtual infrastructure on which to build web, mobile, and enterprise applications. RabbitMQ was designed to be easy to set up, deploy, integrate, and scale in public, private, and hybrid cloud applications. For example, RabbitMQ can connect a Google Compute Engine app with a geographically separated analytics platform, provide an Enterprise Service Bus model within Google Compute Engine, or help scale an on-premise micro-services architecture by connecting to additional Google Compute Engine nodes.
+
+RabbitMQ also provides extensive
+options for integration with Google
+ Compute Engine and other runtimes
+  by supporting AMQP, HTTP, HTTPS,
+  WebSocket, MQTT, and STOMP protocols as well as virtually all modern development languages including Java, Python, .NET, C/C++, Go, PHP, Ruby, Node.js, and others. Companies like Huffington Post, Instagram, Nokia, SoundCloud, the New York Times and thousands of others use RabbitMQ in a wide variety of messaging topologies and scenarios. According to some experts, it has become the leading middleware platform in financial services, the industry it was hatched from.
+
+The Experiment
+
+We provisioned a cluster of virtual machines, each with 8 vCPUs and 30GB of RAM in Google Compute Engine. Each virtual machine ran Debian with a stock installation of RabbitMQ. When deployed in a clustered configuration, multiple instances of RabbitMQ, known as nodes, collaborate to form a single, virtual messaging broker, which can be larger than could be run on a single host.
+
+The RabbitMQ cluster was deployed across Google Compute Engine with just a few clicks from the web administration console. The resulting RabbitMQ cluster consisted of:
+
+30 RabbitMQ RAM nodes
+(where RabbitMQ broker metadata and definitions are held only in RAM)
+1 RabbitMQ Disc node (where RabbitMQ broker metadata and definitions are also held on disc, in this case, a Google Compute Engine Persistent Disk).
+1 RabbitMQ Stats node (to run the RabbitMQ management statistics database without any queues).
+In front of the RabbitMQ cluster nodes sits a Google Compute Engine Load Balancer. The load balancer was configured with a target pool that included all nodes other than the dedicated stats node. The requests from the connecting AMQP clients were balanced between the nodes in the target pool. Excluding the stats node from the target pool helps ensure that message queueing and delivery work doesn’t end up up competing with the managements stats database for resources. In lower throughput scenarios users could choose to include the stats node in the load balancer target pool. This is very straightforward to do on Google Compute Engine.
+
+The RabbitMQ PerfTest tool that ships as part of the RabbitMQ Java client library was used to generate load for the cluster. PerfTest was simultaneously run on a set of Google Compute Engine virtual machines disjoint from the ones housing the RabbitMQ cluster nodes.
+
+For the test environment, 186 queues were created and spread across the cluster’s nodes. Almost 13,000 simultaneous connections were made from PerfTest clients, each of which was configured to initially publish messages on two threads, while consuming on eight threads.
+
+After the traffic generating clients warmed up, we reached a steady state as shown in RabbitMQ’s web management console below:

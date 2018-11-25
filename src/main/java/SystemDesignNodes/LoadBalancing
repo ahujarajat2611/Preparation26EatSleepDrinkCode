@@ -1,0 +1,52 @@
+https://tsien.gitbooks.io/system-design/content/part-2.html
+Scalability for Dummies - Part 1: Clones
+
+Public servers of a scalable web service are hidden behind a load balancer.
+The first golden rule for scalability: every server contains exactly the same codebase and does not store any user-related data, like sessions or profile pictures, on local disc or memory.
+Sessions need to be stored in a centralized data store which is accessible to all your application servers.
+It can be an external database or an external persistent cache, like Redis.
+By external I mean that the data store does not reside on the application servers. Instead, it is somewhere in or near the data center of your application servers.
+How to keep consistent among servers?
+Capistrano
+Load balancing
+
+Load Balancer
+
+load balancing improves the distribution of workloads across multiple computing resources
+Load balancing aims to optimize resource use, maximize throughput, minimize response time, and avoid overload of any single resource.
+Using multiple components with load balancing instead of a single component may increase reliability and availability through redundancy.
+Round-robin DNS
+An alternate method of load balancing, which does not require a dedicated software or hardware node, is called round robin DNS. In this technique, multiple IP addresses are associated with a single domain databaseName; clients are given ip in round robin fashion. Ip is assigned to clients for a time quantum.
+Client-side random load balancing
+deliver a list of server IPs to the client, and then to have client randomly select the IP from the list on each connection.
+Server-side load balancers
+server-side load balancer is usually a software program that is listening on the port where external clients connect to access services.
+The load balancer forwards requests to one of the "backend" servers, which usually replies to the load balancer.
+This allows the load balancer to reply to the client without the client ever knowing about the internal separation of functions.
+It also prevents clients from contacting back-end servers directly, which may have security benefits by hiding the structure of the internal network and preventing attacks on the kernel's network stack or unrelated services running on other ports.
+It is also important that the load balancer itself does not become a single point of failure. Usually load balancers are implemented in high-availability pairs which may also replicate session persistence data if required by the specific application.
+Scheduling algorithms
+random choice or round robin
+Persistence
+An important issue when operating a load-balanced service is how to handle information that must be kept across the multiple requests in a user's session.
+If this information is stored locally on one backend server, then subsequent requests going to different backend servers would not be able to find it. This might be cached information that can be recomputed, in which case load-balancing a request to a different backend server just introduces a performance issue.
+Ideal solution: session-aware, This is usually achieved with a shared database or an in-memory session database, for example Memcached.
+One basic solution to the session data issue is to send all requests in a user session consistently to the same backend server.
+This is known as persistence or stickiness.
+A significant downside to this technique is its lack of automatic failover: if a backend server goes down, its per-session information becomes inaccessible, and any sessions depending on it are lost.
+Another solution is to keep the per-session data in a database.
+Generally this is bad for performance because it increases the load on the database: the database is best used to store information less transient than per-session data.
+To prevent a database from becoming a single point of failure, and to improve scalability, the database is often replicated across multiple machines, and load balancing is used to spread the query load across those replicas.
+In the very common case where the client is a web browser, a simple but efficient approach is to store the per-session data in the browser itself.
+One way to achieve this is to use a browser cookie, suitably time-stamped and encrypted. Another is URL rewriting.
+this method of state-data handling is poorly suited to some complex business logic scenarios, where session state payload is big and recomputing it with every request on a server is not feasible.
+URL rewriting has major security issues, because the end-user can easily alter the submitted URL and thus change session streams.
+another solution to storing persistent data is to associate a databaseName with each block of data, and use a distributed hash table to pseudo-randomly assign that databaseName to one of the available servers, and then store that block of data in the assigned server.
+
+Sticky Session Scheme
+
+The two previous load balancing schemes are based on the assumption that any incoming task can be processed independently of previously executed tasks. This may not always be the case though.
+Idea: All tasks (e.g. HTTP requests) belonging to the same session (e.g the same user) are sent to the same server.
+With sticky session load balancing it isn't the tasks that are distributed out to the servers, but rather the task sessions.
+Problems: This will of course result in a somewhat more unpredictable distribution of work load, as some sessions will contain few tasks, and other sessions will contain many tasks.
+Another solution is to avoid using session variables completely, or to store the session variables in a database or cache server, accessible to all servers in the cluster.
